@@ -16,27 +16,107 @@ class AccessError(RuntimeError):
 
 class AccessClient:
     def __init__(self, config_path: Path | None = None):
-        saved_path = None
-        if config_path is None and not os.environ.get("MESSAGING_ACCESS_CONFIG"):
-            pointer = Path(os.environ.get("LOCALAPPDATA", Path.home())) / "WeChatQQAIPanel/access-config.json"
-            if pointer.exists():
-                try:
-                    saved_path = json.loads(pointer.read_text(encoding="utf-8-sig"))["configPath"]
-                    if not isinstance(saved_path, str) or not Path(saved_path).is_absolute():
-                        raise ValueError()
-                except (OSError, ValueError, KeyError, TypeError):
-                    raise AccessError("DEPLOYMENT_UNAVAILABLE") from None
-        self.config_path = Path(config_path or os.environ.get("MESSAGING_ACCESS_CONFIG") or saved_path or
-                                Path(os.environ.get("LOCALAPPDATA", Path.home())) / "MessagingAccess/deployment.json")
+        self._explicit_config = Path(config_path) if config_path is not None else None
+        self.config_path = self._select_config()
+
+    def _select_config(self) -> Path:
+        local = Path(os.environ.get("LOCALAPPDATA", Path.home()))
+        self._diagnostic_root = local / "WeChatQQAIPanel"
+        pointer = self._diagnostic_root / "access-config.json"
+        default = local / "MessagingAccess/deployment.json"
+        environment = os.environ.get("MESSAGING_ACCESS_CONFIG")
+        self._connection_state = {
+            "configSource": "explicit" if self._explicit_config is not None else "environment" if environment else "default",
+            "pointerExists": False, "pointerValid": False,
+            "selectedMatchesPointer": False, "selectedMatchesDefault": False,
+            "configExists": False, "pythonExists": False, "rootExists": False,
+        }
+        saved_path, pointer_error = None, None
+        try:
+            self._connection_state["pointerExists"] = pointer.exists()
+            if self._connection_state["pointerExists"]:
+                value = json.loads(pointer.read_text(encoding="utf-8-sig"))
+                saved_path = value["configPath"]
+                if not isinstance(saved_path, str) or not Path(saved_path).is_absolute():
+                    raise ValueError()
+                saved_path = Path(saved_path)
+                self._connection_state["pointerValid"] = True
+        except (OSError, ValueError, KeyError, TypeError) as exc:
+            pointer_error = exc
+        if self._explicit_config is not None:
+            selected = self._explicit_config
+        elif environment:
+            selected = Path(environment)
+        elif self._connection_state["pointerExists"] or pointer_error is not None:
+            self._connection_state["configSource"] = "installer_pointer"
+            if pointer_error is not None:
+                self._fail("DEPLOYMENT_POINTER_INVALID", "pointer", pointer_error)
+            selected = saved_path
+        else:
+            selected = default
+        def same(left, right):
+            if left is None or right is None:
+                return False
+            return os.path.normcase(os.path.abspath(left)) == os.path.normcase(os.path.abspath(right))
+        self._connection_state["selectedMatchesPointer"] = same(selected, saved_path)
+        self._connection_state["selectedMatchesDefault"] = same(selected, default)
+        return Path(selected)
+
+    def _fail(self, code: str, stage: str, exc=None):
+        # Fixed vocabulary only. No exception text, paths, JSON, account data or
+        # credentials can reach this bounded, overwritten diagnostic snapshot.
+        types = {"FileNotFoundError", "PermissionError", "OSError", "JSONDecodeError", "UnicodeDecodeError",
+                 "ValueError", "KeyError", "TypeError"}
+        exception_type = type(exc).__name__ if exc is not None else "None"
+        if exception_type not in types | {"None"}:
+            exception_type = "Other"
+        data = {"schemaVersion": 1, "stage": stage, "code": code,
+                **self._connection_state, "exceptionType": exception_type}
+        try:
+            self._diagnostic_root.mkdir(parents=True, exist_ok=True)
+            target = self._diagnostic_root / "connection-diagnostic.json"
+            temporary = self._diagnostic_root / "connection-diagnostic.new"
+            encoded = json.dumps(data, ensure_ascii=True, separators=(",", ":"))
+            if len(encoded.encode("ascii")) <= 2048:
+                temporary.write_text(encoded, encoding="utf-8")
+                os.replace(temporary, target)
+        except (OSError, ValueError):
+            pass  # Diagnostic failure must not replace or relax the actual error.
+        raise AccessError(code) from None
 
     def _deployment(self) -> dict:
+        # Re-resolve automatic configuration after installer changes. Explicit
+        # constructor input remains pinned; invalid selected input never falls back.
+        self.config_path = self._select_config()
         try:
-            config = json.loads(self.config_path.read_text(encoding="utf-8-sig"))
-            if not Path(config["pythonExe"]).is_file() or not Path(config["projectRoot"]).is_dir():
+            self._connection_state["configExists"] = self.config_path.is_file()
+            if not self._connection_state["configExists"]:
+                self._fail("DEPLOYMENT_CONFIG_MISSING", "config")
+            source = self.config_path.read_text(encoding="utf-8-sig")
+        except UnicodeError as exc:
+            self._fail("DEPLOYMENT_CONFIG_INVALID", "config", exc)
+        except OSError as exc:
+            self._fail("DEPLOYMENT_CONFIG_UNREADABLE", "config", exc)
+        try:
+            config = json.loads(source)
+            if (not isinstance(config, dict) or any(not isinstance(config.get(key), str) or not config[key]
+                                                  for key in ("pythonExe", "projectRoot"))):
                 raise ValueError()
-            return config
-        except (OSError, ValueError, KeyError, TypeError):
-            raise AccessError("DEPLOYMENT_UNAVAILABLE") from None
+            python, root = Path(config["pythonExe"]), Path(config["projectRoot"])
+            if not python.is_absolute() or not root.is_absolute():
+                raise ValueError()
+        except (ValueError, KeyError, TypeError) as exc:
+            self._fail("DEPLOYMENT_CONFIG_INVALID", "config", exc)
+        try:
+            self._connection_state["pythonExists"] = python.is_file()
+            self._connection_state["rootExists"] = root.is_dir()
+        except (OSError, ValueError) as exc:
+            self._fail("DEPLOYMENT_PATH_CHECK_FAILED", "runtime", exc)
+        if not self._connection_state["pythonExists"]:
+            self._fail("DEPLOYMENT_PYTHON_MISSING", "runtime")
+        if not self._connection_state["rootExists"]:
+            self._fail("DEPLOYMENT_ROOT_MISSING", "runtime")
+        return config
 
     def call(self, action: str, **kwargs) -> dict:
         config = self._deployment()

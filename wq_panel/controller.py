@@ -26,6 +26,13 @@ class Cancelled(PanelError):
 
 ERRORS = {
     "DEPLOYMENT_UNAVAILABLE": "未找到消息底座，请先安装或检查部署配置。",
+    "DEPLOYMENT_POINTER_INVALID": "底座连接指针无效，请重新运行面板安装器。",
+    "DEPLOYMENT_CONFIG_MISSING": "选定的底座部署配置不存在，请检查安装入口或环境变量。",
+    "DEPLOYMENT_CONFIG_UNREADABLE": "无法读取选定的底座部署配置，请检查文件权限。",
+    "DEPLOYMENT_CONFIG_INVALID": "底座部署配置格式无效，请修复配置后重试。",
+    "DEPLOYMENT_PYTHON_MISSING": "底座配置指定的 Python 不存在，请修复底座环境。",
+    "DEPLOYMENT_ROOT_MISSING": "底座配置指定的项目目录不存在，请重新定位底座。",
+    "DEPLOYMENT_PATH_CHECK_FAILED": "无法核验底座运行路径，请检查文件权限与安装状态。",
     "ACCESS_UNAVAILABLE": "消息接口暂不可用，请确认微信／QQ接入已启动。",
     "POLICY_REQUIRED": "请先设置账号的会话权限。",
     "POLICY_INVALID": "权限配置损坏，读取已停止；请在会话权限中重新保存。",
