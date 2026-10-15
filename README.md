@@ -4,6 +4,10 @@ Windows tray panel for your existing WeChat and QQ conversations: fetch new mess
 
 微信／QQ新消息、AI摘要、待办与待回复，一个小窗口完成。默认按按钮执行，关注列表与允许读取范围分开管理。支持 DeepSeek Harness（DSH）和兼容 Chat Completions 的 API。
 
+Conversation selection separates QQ groups, private chats and device sessions by account and source type. Page loads and asynchronous actions show loading feedback with reduced-motion support.
+
+QQ 群聊、私聊和设备会话分区展示，可按类型筛选；页面载入和异步操作提供加载动画，并尊重系统减少动态效果设置。
+
 ## Install / 安装
 
 Requires Windows 10/11 x64, PowerShell 7 and Python 3.11. WebView2 Evergreen Runtime must be installed. Keep the two repositories in sibling directories:
@@ -19,7 +23,7 @@ wechat-qq-ai/
 mkdir wechat-qq-ai
 cd wechat-qq-ai
 git clone --branch v0.2.1 https://github.com/Patr1ck2005/wechat-qq-access.git access
-git clone --branch v0.1.2 https://github.com/Patr1ck2005/wechat-qq-ai-panel.git panel
+git clone --branch v0.2.0 https://github.com/Patr1ck2005/wechat-qq-ai-panel.git panel
 cd panel
 # Reuses an existing access deployment when available.
 ./scripts/install.ps1
