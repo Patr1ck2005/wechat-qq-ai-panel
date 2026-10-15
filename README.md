@@ -19,7 +19,7 @@ wechat-qq-ai/
 mkdir wechat-qq-ai
 cd wechat-qq-ai
 git clone --branch v0.2.1 https://github.com/Patr1ck2005/wechat-qq-access.git access
-git clone --branch v0.1.1 https://github.com/Patr1ck2005/wechat-qq-ai-panel.git panel
+git clone --branch v0.1.2 https://github.com/Patr1ck2005/wechat-qq-ai-panel.git panel
 cd panel
 # Reuses an existing access deployment when available.
 ./scripts/install.ps1

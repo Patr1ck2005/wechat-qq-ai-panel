@@ -338,8 +338,10 @@ console.log(JSON.stringify({executions,ready,rejected}));
         with RecycleFixture() as folder:
             env = os.environ.copy()
             env.update({"PANEL_GUARD_IMPORT": (dsh.RESOURCE_ROOT / "no-tools.mjs").as_uri(), "PANEL_GUARD_READY": str(Path(folder) / "ready.json")})
+            # Shared Windows runners can pause a cold Node process for longer
+            # than 15 seconds. Keep every denial assertion, with a bounded wait.
             result = subprocess.run([shutil.which("node"), "--input-type=module", "-e", script], env=env,
-                                    capture_output=True, timeout=15, creationflags=dsh.CREATE_NO_WINDOW)
+                                    capture_output=True, timeout=60, creationflags=dsh.CREATE_NO_WINDOW)
         self.assertEqual(result.returncode, 0, result.stderr.decode(errors="replace"))
         self.assertEqual(json.loads(result.stdout), {"executions": 0, "ready": True, "rejected": True})
 
