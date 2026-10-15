@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1120" viewBox="0 0 1400 1120" role="img" aria-labelledby="title desc">
+<title id="title">WeChat QQ AI Panel synthetic interface preview</title><desc id="desc">Illustrative English-language view of the existing Chinese interface. Left: fetch and summarize with watched conversations and three presets. Right: QQ groups, private and device/other sessions, separate authorization and watch columns. All names, IDs, counts and results are synthetic.</desc>
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#111a31" /><stop offset="1" stop-color="#17172f" /></linearGradient><linearGradient id="brand" x2="1" y2="1"><stop stop-color="#498dff" /><stop offset="1" stop-color="#7958ee" /></linearGradient><linearGradient id="bright" x2="1" y2="0"><stop stop-color="#83b6ff" /><stop offset="1" stop-color="#c2b1ff" /></linearGradient><radialGradient id="glow"><stop stop-color="#476cf0" stop-opacity=".26" /><stop offset="1" stop-color="#476cf0" stop-opacity="0" /></radialGradient><linearGradient id="tile" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#508bff" /><stop offset="1" stop-color="#5141cf" /></linearGradient><linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffffff" stop-opacity=".20" /><stop offset="1" stop-color="#ffffff" stop-opacity="0" /></linearGradient></defs>
+<g font-family="Segoe UI,Arial,Helvetica,sans-serif">
+<rect x="0" y="0" width="1400" height="1120" rx="24" fill="url(#bg)" />
+<ellipse cx="1250" cy="180" rx="570" ry="400" fill="url(#glow)" />
+<text x="48" y="64" font-size="36" font-weight="700" fill="#fff">A focused panel. Clear conversation controls.</text>
+<rect x="1079" y="33" width="272" height="34" rx="17" fill="#244142" />
+<text x="1093" y="56" font-size="15" font-weight="600" fill="#8fe4d7">SYNTHETIC DEMO</text>
+<text x="48" y="103" font-size="20" font-weight="400" fill="#a8b8d5">UI illustration with invented data · labels translated for this preview</text>
+<rect x="48" y="140" width="638" height="814" rx="18" fill="#1b2437" stroke="#354361" stroke-width="1" />
+<rect x="48" y="140" width="638" height="38" rx="18" fill="#253148" />
+<text x="66" y="165" font-size="14" font-weight="400" fill="#9caecb">WeChat · QQ AI</text>
+<text x="608" y="165" font-size="15" font-weight="400" fill="#8394b0">—  □  ×</text>
+<g transform="translate(70 198) scale(0.16796875)" data-brand="true">
+<rect x="16" y="16" width="224" height="224" rx="58" fill="url(#tile)" />
+<rect x="17" y="17" width="222" height="222" rx="57" fill="none" stroke="url(#sheen)" stroke-width="2" />
+<path d="M 71 102 H 151 Q 176 102 176 127 V 167 Q 176 191 151 191 H 105 L 69 212 L 75 191 H 71 Q 47 191 47 167 V 127 Q 47 102 71 102 Z" fill="#a7c5ff" />
+<path d="M 89 59 H 177 Q 204 59 204 86 V 139 Q 204 166 177 166 H 171 L 184 188 L 144 166 H 89 Q 63 166 63 139 V 86 Q 63 59 89 59 Z" fill="#ffffff" />
+<circle cx="96" cy="111" r="5.5" fill="#5270d8" /><circle cx="122" cy="111" r="5.5" fill="#5270d8" /><circle cx="148" cy="111" r="5.5" fill="#5270d8" /><polygon points="191,44 197,61 214,67 197,73 191,90 185,73 168,67 185,61" fill="#61e8d5" stroke="#5267e7" stroke-width="3" stroke-linejoin="round" />
+</g>
+<text x="127" y="226" font-size="23" font-weight="700" fill="#fff">WeChat · QQ AI</text>
+<text x="70" y="280" font-size="17" font-weight="600" fill="#92b6ff">Messages</text>
+<text x="191" y="280" font-size="17" font-weight="600" fill="#9dacc6">Permissions</text>
+<text x="335" y="280" font-size="17" font-weight="400" fill="#9dacc6">Models &amp; presets</text>
+<text x="518" y="280" font-size="17" font-weight="400" fill="#9dacc6">Storage</text>
+<path d="M68 295H665" fill="none" stroke="#34415d" stroke-width="1" />
+<path d="M69 295H153" fill="none" stroke="#6a9bff" stroke-width="3" />
+<rect x="713" y="140" width="638" height="814" rx="18" fill="#1b2437" stroke="#354361" stroke-width="1" />
+<rect x="713" y="140" width="638" height="38" rx="18" fill="#253148" />
+<text x="731" y="165" font-size="14" font-weight="400" fill="#9caecb">WeChat · QQ AI</text>
+<text x="1273" y="165" font-size="15" font-weight="400" fill="#8394b0">—  □  ×</text>
+<g transform="translate(735 198) scale(0.16796875)" data-brand="true">
+<rect x="16" y="16" width="224" height="224" rx="58" fill="url(#tile)" />
+<rect x="17" y="17" width="222" height="222" rx="57" fill="none" stroke="url(#sheen)" stroke-width="2" />
+<path d="M 71 102 H 151 Q 176 102 176 127 V 167 Q 176 191 151 191 H 105 L 69 212 L 75 191 H 71 Q 47 191 47 167 V 127 Q 47 102 71 102 Z" fill="#a7c5ff" />
+<path d="M 89 59 H 177 Q 204 59 204 86 V 139 Q 204 166 177 166 H 171 L 184 188 L 144 166 H 89 Q 63 166 63 139 V 86 Q 63 59 89 59 Z" fill="#ffffff" />
+<circle cx="96" cy="111" r="5.5" fill="#5270d8" /><circle cx="122" cy="111" r="5.5" fill="#5270d8" /><circle cx="148" cy="111" r="5.5" fill="#5270d8" /><polygon points="191,44 197,61 214,67 197,73 191,90 185,73 168,67 185,61" fill="#61e8d5" stroke="#5267e7" stroke-width="3" stroke-linejoin="round" />
+</g>
+<text x="792" y="226" font-size="23" font-weight="700" fill="#fff">WeChat · QQ AI</text>
+<text x="735" y="280" font-size="17" font-weight="600" fill="#9dacc6">Messages</text>
+<text x="856" y="280" font-size="17" font-weight="600" fill="#92b6ff">Permissions</text>
+<text x="1000" y="280" font-size="17" font-weight="400" fill="#9dacc6">Models &amp; presets</text>
+<text x="1183" y="280" font-size="17" font-weight="400" fill="#9dacc6">Storage</text>
+<path d="M733 295H1330" fill="none" stroke="#34415d" stroke-width="1" />
+<path d="M855 295H960" fill="none" stroke="#6a9bff" stroke-width="3" />
+<rect x="69" y="318" width="596" height="306" rx="12" fill="#242f45" stroke="#394761" stroke-width="1" />
+<text x="88" y="352" font-size="22" font-weight="600" fill="#f0f4ff">On demand, at your pace</text>
+<rect x="453" y="330" width="190" height="34" rx="17" fill="#284448" />
+<text x="467" y="353" font-size="12" font-weight="600" fill="#7edeca">READ ON CLICK</text>
+<text x="88" y="390" font-size="12" font-weight="600" fill="#98a9c5">SCOPE</text>
+<rect x="88" y="402" width="252" height="43" rx="8" fill="#1d283c" stroke="#46516d" stroke-width="1" />
+<text x="102" y="429" font-size="17" font-weight="400" fill="#dce6fa">Watched conversations</text>
+<text x="358" y="390" font-size="12" font-weight="600" fill="#98a9c5">PRESET</text>
+<rect x="358" y="402" width="285" height="43" rx="8" fill="#1d283c" stroke="#46516d" stroke-width="1" />
+<text x="372" y="429" font-size="17" font-weight="400" fill="#dce6fa">To-dos &amp; replies</text>
+<text x="88" y="477" font-size="15" font-weight="400" fill="#a1b1ca">3 selected · QQ groups 1 / private 1 / WeChat 1</text>
+<rect x="88" y="498" width="252" height="42" rx="10" fill="#202b43" stroke="#3b4862" stroke-width="1" />
+<text x="104" y="525" font-size="17" font-weight="600" fill="#cdd8f0">↓  Fetch messages</text>
+<rect x="358" y="498" width="285" height="42" rx="10" fill="url(#brand)" />
+<text x="374" y="525" font-size="17" font-weight="600" fill="#fff">Update brief</text>
+<circle cx="95" cy="585" r="5" fill="#75dbc4" />
+<text x="110" y="591" font-size="16" font-weight="400" fill="#a9b9d1">Complete · 12 synthetic messages</text>
+<rect x="69" y="641" width="596" height="291" rx="12" fill="#242f45" stroke="#394761" stroke-width="1" />
+<text x="88" y="679" font-size="22" font-weight="600" fill="#f0f4ff">To-dos &amp; replies</text>
+<text x="453" y="679" font-size="15" font-weight="400" fill="#8fb8ff">Copy   Export .md</text>
+<text x="88" y="721" font-size="19" font-weight="400" fill="#dce6fa">[ ] Reply to Alex before 16:00.</text>
+<text x="88" y="756" font-size="19" font-weight="400" fill="#dce6fa">[ ] Review the studio agenda.</text>
+<text x="88" y="801" font-size="17" font-weight="600" fill="#9bbdff">Waiting for your reply</text>
+<text x="88" y="832" font-size="18" font-weight="400" fill="#bdcbe2">Design feedback · Alex</text>
+<text x="88" y="885" font-size="15" font-weight="400" fill="#93a6c2">Sources (12)</text>
+<text x="363" y="911" font-size="13" font-weight="400" fill="#7f94b4">Latest result per preset</text>
+<rect x="734" y="318" width="596" height="52" rx="10" fill="#283b56" />
+<text x="750" y="351" font-size="17" font-weight="600" fill="#adcaff">Permission controls access. Watching controls scope.</text>
+<text x="740" y="412" font-size="21" font-weight="600" fill="#edf2ff">QQ · demo-account</text>
+<rect x="1093" y="386" width="230" height="41" rx="9" fill="#26334a" stroke="#475775" stroke-width="1" />
+<text x="1107" y="413" font-size="18" font-weight="400" fill="#dce6fa">Allow-list only</text>
+<text x="740" y="457" font-size="16" font-weight="400" fill="#a2b4d0">New conversations are blocked until allowed.</text>
+<rect x="737" y="479" width="586" height="43" rx="8" fill="#202c42" stroke="#3c4a64" stroke-width="1" />
+<text x="751" y="507" font-size="17" font-weight="400" fill="#8496b4">Search conversations…</text>
+<text x="1097" y="507" font-size="17" font-weight="400" fill="#a5b7d3">All types</text>
+<text x="752" y="557" font-size="12" font-weight="600" fill="#8ea1c2">CONVERSATION</text>
+<text x="1152" y="557" font-size="12" font-weight="600" fill="#8ea1c2">ALLOW</text>
+<text x="1237" y="557" font-size="12" font-weight="600" fill="#8ea1c2">WATCH</text>
+<rect x="738" y="574" width="585" height="34" rx="5" fill="#2a3b59" />
+<text x="753" y="597" font-size="15" font-weight="600" fill="#a9c9ff">QQ GROUPS</text>
+<text x="755" y="638" font-size="18" font-weight="400" fill="#dce6f7">Studio collective</text>
+<rect x="1161" y="619" width="20" height="20" rx="5" fill="#5e91ff" stroke="#5e91ff" stroke-width="1" />
+<path d="M1166 629l4 4l7 -8" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+<rect x="1244" y="619" width="20" height="20" rx="5" fill="#5e91ff" stroke="#5e91ff" stroke-width="1" />
+<path d="M1249 629l4 4l7 -8" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+<text x="755" y="679" font-size="18" font-weight="400" fill="#dce6f7">Weekend planning</text>
+<rect x="1161" y="660" width="20" height="20" rx="5" fill="#1d2940" stroke="#54617d" stroke-width="1" />
+<rect x="1244" y="660" width="20" height="20" rx="5" fill="#1d2940" stroke="#54617d" stroke-width="1" />
+<rect x="738" y="702" width="585" height="34" rx="5" fill="#2a3b59" />
+<text x="753" y="725" font-size="15" font-weight="600" fill="#a9c9ff">QQ PRIVATE CHATS</text>
+<text x="755" y="766" font-size="18" font-weight="400" fill="#dce6f7">Alex (demo)</text>
+<rect x="1161" y="747" width="20" height="20" rx="5" fill="#5e91ff" stroke="#5e91ff" stroke-width="1" />
+<path d="M1166 757l4 4l7 -8" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+<rect x="1244" y="747" width="20" height="20" rx="5" fill="#5e91ff" stroke="#5e91ff" stroke-width="1" />
+<path d="M1249 757l4 4l7 -8" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+<rect x="738" y="789" width="585" height="34" rx="5" fill="#2a3b59" />
+<text x="753" y="812" font-size="15" font-weight="600" fill="#a9c9ff">QQ DEVICES / OTHER</text>
+<text x="755" y="853" font-size="18" font-weight="400" fill="#dce6f7">Demo device</text>
+<rect x="1161" y="834" width="20" height="20" rx="5" fill="#1d2940" stroke="#54617d" stroke-width="1" />
+<rect x="1244" y="834" width="20" height="20" rx="5" fill="#1d2940" stroke="#54617d" stroke-width="1" />
+<rect x="1065" y="883" width="257" height="42" rx="10" fill="url(#brand)" />
+<text x="1081" y="910" font-size="17" font-weight="600" fill="#fff">Save permissions &amp; watch</text>
+<text x="51" y="999" font-size="16" font-weight="700" fill="#8fb8ff">FETCH ≠ SUMMARIZE</text>
+<text x="51" y="1029" font-size="19" font-weight="400" fill="#b9c8e0">Read without a model, or organize on request.</text>
+<text x="716" y="999" font-size="16" font-weight="700" fill="#8fb8ff">ALLOW ≠ WATCH</text>
+<text x="716" y="1029" font-size="19" font-weight="400" fill="#b9c8e0">Watching a chat never grants permission.</text>
+<path d="M48 1059H1352" fill="none" stroke="#2b3750" stroke-width="1" />
+<text x="48" y="1091" font-size="16" font-weight="400" fill="#8d9bb7">Synthetic demo / no real accounts, messages or model output.</text>
+<text x="1078" y="1091" font-size="16" font-weight="400" fill="#8d9bb7">WeChat + QQ  /  Windows</text>
+<path d="M317 422l4 4l4 -4" fill="none" stroke="#a5b7d3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /><path d="M620 422l4 4l4 -4" fill="none" stroke="#a5b7d3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /><path d="M1295 407l4 4l4 -4" fill="none" stroke="#a5b7d3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /><path d="M1285 501l4 4l4 -4" fill="none" stroke="#a5b7d3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /><path d="M193 879l4 4l4 -4" fill="none" stroke="#a5b7d3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></g></svg>

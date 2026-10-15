@@ -1,5 +1,7 @@
 # WeChat QQ AI Panel · 微信 QQ AI 消息面板
 
+![WeChat QQ AI Panel product overview: on-demand message briefs, separate conversation permissions, DSH or compatible API](docs/assets/product-overview.svg)
+
 Windows tray panel for your existing WeChat and QQ conversations: fetch new messages, generate AI briefs, and extract follow-ups with editable prompt presets. Conversation permissions are enforced by the companion access layer before any model request.
 
 微信／QQ新消息、AI摘要、待办与待回复，一个小窗口完成。默认按按钮执行，关注列表与允许读取范围分开管理。支持 DeepSeek Harness（DSH）和兼容 Chat Completions 的 API。
@@ -7,6 +9,19 @@ Windows tray panel for your existing WeChat and QQ conversations: fetch new mess
 Conversation selection separates QQ groups, private chats and device sessions by account and source type. Page loads and asynchronous actions show loading feedback with reduced-motion support.
 
 QQ 群聊、私聊和设备会话分区展示，可按类型筛选；页面载入和异步操作提供加载动画，并尊重系统减少动态效果设置。
+
+| Read / 读取 | Organize / 整理 | Control / 控制 |
+|---|---|---|
+| Fetch without a model / 获取新消息不调用模型 | Quick brief, to-dos & replies, daily review / 速览、待办与待回复、今日回顾 | Per-account conversation permissions / 逐账号设置会话权限 |
+| Separate QQ groups, private chats and devices/other / QQ 群聊、私聊、设备／其他分区 | Edit and save prompt presets / 编辑保存提示词预设 | Watching never grants access / 关注不会扩大授权 |
+
+## Interface preview / 界面示意
+
+![Synthetic panel interface showing message actions and separate QQ group, private, device/other permission controls](docs/assets/interface-preview.svg)
+
+**Synthetic demo / 合成数据示意。** These are vector illustrations of the current interface, with English labels for this preview. All names, counts, messages and results are invented. They are not live-account screenshots or evidence of a real model run. The installed interface currently uses Chinese labels.
+
+以上展示当前界面的功能结构，预览采用英文标签；账号、名字、条数和结果均为合成数据。桌面、窗口与托盘使用同一套随安装包提供的图标。
 
 ## Install / 安装
 
@@ -22,19 +37,27 @@ wechat-qq-ai/
 # Fresh deployment: keep both repositories together.
 mkdir wechat-qq-ai
 cd wechat-qq-ai
-git clone --branch v0.2.1 https://github.com/Patr1ck2005/wechat-qq-access.git access
-git clone --branch v0.2.0 https://github.com/Patr1ck2005/wechat-qq-ai-panel.git panel
+git clone --branch v0.2.2 https://github.com/Patr1ck2005/wechat-qq-access.git access
+git clone --branch v0.2.1 https://github.com/Patr1ck2005/wechat-qq-ai-panel.git panel
 cd panel
 # Reuses an existing access deployment when available.
 ./scripts/install.ps1
 ./scripts/start.ps1
 ```
 
-The installer provisions a separate panel Python environment, reuses the access layer's existing runtime and caches, and creates a desktop shortcut. QQ setup retains the access layer's explicit network-exposure acknowledgement and manual login requirements.
+The installer provisions a separate panel Python environment, reuses the access layer's existing runtime and caches, and creates a desktop shortcut with the bundled product icon. QQ setup retains the access layer's explicit network-exposure acknowledgement and manual login requirements.
 
 New access deployments keep their private data under `%USERPROFILE%/.local/share/wechat-qq-access`, outside AppData virtualization. The desktop shortcut pins the selected configuration explicitly; existing custom and legacy configurations remain supported.
 
 本机桌面入口及可选的 Project Hub 登记见 [Local Desktop Entry](WEB_ENTRY.md)。
+
+Existing installation / 已安装用户：refresh only the desktop launcher and icon without reinstalling dependencies or launching the app:
+
+```powershell
+./scripts/update-shortcut.ps1
+```
+
+The selected access configuration is preserved. Fully quit and reopen the panel to load the new window and tray icons. 图标来源、重建与合成展示说明见 [Visual assets](docs/visual-assets.md)。
 
 ## First use / 首次使用
 

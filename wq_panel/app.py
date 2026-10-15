@@ -12,6 +12,46 @@ from .controller import Controller, PanelError, safe_error
 from .storage import Store
 
 
+APP_USER_MODEL_ID = "WeChatQQAI.Panel"
+
+
+def set_application_identity():
+    """Identify the process before WinForms creates its first native window."""
+    if os.name == "nt":
+        setter = ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID
+        setter.argtypes = (ctypes.c_wchar_p,)
+        setter.restype = ctypes.c_long
+        if setter(APP_USER_MODEL_ID) != 0:
+            raise PanelError("APP_ID_UNAVAILABLE")
+
+
+def load_app_icons(asset_directory=None):
+    """Use the bundled identity at every native surface; never use Python's icon."""
+    from PIL import Image
+    import xml.etree.ElementTree as ET
+    directory = Path(asset_directory) if asset_directory is not None else Path(__file__).parent / "assets"
+    icon = directory / "app.ico"
+    tray = directory / "app.png"
+    vector = directory / "app.svg"
+    if not icon.is_file() or not tray.is_file() or not vector.is_file():
+        raise PanelError("APP_ICON_MISSING")
+    try:
+        with Image.open(icon) as source:
+            if source.format != "ICO":
+                raise ValueError()
+            source.load()
+        with Image.open(tray) as source:
+            if source.format != "PNG":
+                raise ValueError()
+            image = source.convert("RGBA")
+        svg = vector.read_text(encoding="utf-8")
+        if ET.fromstring(svg).tag != "{http://www.w3.org/2000/svg}svg":
+            raise ValueError()
+    except (OSError, ValueError, ET.ParseError):
+        raise PanelError("APP_ICON_INVALID") from None
+    return icon.resolve(), image, svg
+
+
 BRIDGE_METHODS = ("bootstrap", "status", "catalog", "conversations", "save_policy", "save_settings", "start", "stop",
                   "result", "storage", "clean", "save_api_key", "delete_api_key", "discover_dsh", "copy_result",
                   "export_result", "hide", "quit")
@@ -237,9 +277,18 @@ def run(config_path: Path | None = None):
     if not instance.primary:
         instance.close()
         return
+    try:
+        native_icon, icon_image, svg_icon = load_app_icons()
+        set_application_identity()
+    except PanelError as exc:
+        instance.close()
+        if os.name == "nt":
+            ctypes.windll.user32.MessageBoxW(None,
+                "应用图标或窗口身份无法加载，请重新运行安装脚本。\n错误代码：" + exc.code,
+                "微信 · QQ AI — 启动失败", 0x10)
+        raise
     import webview
     import pystray
-    from PIL import Image, ImageDraw
     store = Store()
     controller = Controller(AccessClient(config_path), store)
     try:
@@ -248,6 +297,8 @@ def run(config_path: Path | None = None):
         controller.state["progress"] = "窗口缓存暂未清理，已保留；可在空间管理中重试。"
     bridge = Bridge(controller)
     html = (Path(__file__).parent / "ui.html").read_text(encoding="utf-8")
+    # Only the repository's bundled vector is inserted; message/model text never enters HTML.
+    html = html.replace("<!--APP_ICON-->", svg_icon)
     window = webview.create_window("微信 · QQ AI", html=html, width=820, height=720,
                                    min_size=(600, 540), background_color="#f5f7fb", text_select=True)
     expose_bridge(window, bridge)
@@ -257,12 +308,6 @@ def run(config_path: Path | None = None):
     def show(*_args):
         window.show()
         window.restore()
-    icon_image = Image.new("RGBA", (64, 64), (0, 0, 0, 0))
-    draw = ImageDraw.Draw(icon_image)
-    draw.rounded_rectangle((4, 4, 60, 53), radius=15, fill="#367bfa")
-    draw.polygon(((14, 47), (14, 62), (30, 49)), fill="#367bfa")
-    for x in (21, 32, 43):
-        draw.ellipse((x - 3, 25, x + 3, 31), fill="white")
     icon = pystray.Icon("wechat-qq-ai-panel", icon_image, "微信 / QQ AI 小面板")
     def quit_app(*_args):
         exiting.set()
@@ -286,8 +331,9 @@ def run(config_path: Path | None = None):
         threading.Thread(target=instance.listen, args=(show, stopped), daemon=True).start()
     try:
         # Inline HTML avoids pywebview's file-serving HTTP mode.
+        # pywebview 6.2.1's WinForms host loads this ICO through System.Drawing.Icon.
         webview.start(started, gui="edgechromium", debug=False, private_mode=True,
-                      storage_path=str(store.root / "webview"))
+                      storage_path=str(store.root / "webview"), icon=str(native_icon))
     finally:
         stopped.set()
         controller.stop()

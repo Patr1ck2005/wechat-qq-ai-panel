@@ -49,12 +49,6 @@ $private = Join-Path $env:LOCALAPPDATA 'WeChatQQAIPanel'
 [IO.File]::WriteAllText((Join-Path $private 'access-config.json'),
     (@{configPath=[IO.Path]::GetFullPath($ConfigPath)} | ConvertTo-Json), [Text.UTF8Encoding]::new($false))
 if (-not $SkipShortcut) {
-    $shell = New-Object -ComObject WScript.Shell
-    $shortcut = $shell.CreateShortcut((Join-Path ([Environment]::GetFolderPath('Desktop')) 'WeChat QQ AI Panel.lnk'))
-    $shortcut.TargetPath = Join-Path $venv 'Scripts/pythonw.exe'
-    $shortcut.Arguments = '-m wq_panel --access-config "' + $ConfigPath + '"'
-    $shortcut.WorkingDirectory = $root
-    $shortcut.Description = 'WeChat / QQ AI message panel with conversation permissions'
-    $shortcut.Save()
+    & (Join-Path $PSScriptRoot 'update-shortcut.ps1') -ConfigPath $ConfigPath | Out-Null
 }
 Write-Output ([pscustomobject]@{ installed = $true; accessReused = $true; modelCalled = $false })

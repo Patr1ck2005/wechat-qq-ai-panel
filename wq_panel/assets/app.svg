@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+<title id="title">WeChat QQ AI Panel</title><desc id="desc">Two conversation cards with an aqua sparkle on a blue and indigo rounded tile.</desc>
+<defs><linearGradient id="tile" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#508bff"/><stop offset="1" stop-color="#5141cf"/></linearGradient><linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffffff" stop-opacity=".20"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></linearGradient></defs>
+<rect x="16" y="16" width="224" height="224" rx="58" fill="url(#tile)"/>
+<rect x="17" y="17" width="222" height="222" rx="57" fill="none" stroke="url(#sheen)" stroke-width="2"/>
+<path d="M 71 102 H 151 Q 176 102 176 127 V 167 Q 176 191 151 191 H 105 L 69 212 L 75 191 H 71 Q 47 191 47 167 V 127 Q 47 102 71 102 Z" fill="#a7c5ff"/>
+<path d="M 89 59 H 177 Q 204 59 204 86 V 139 Q 204 166 177 166 H 171 L 184 188 L 144 166 H 89 Q 63 166 63 139 V 86 Q 63 59 89 59 Z" fill="#ffffff"/>
+<circle cx="96" cy="111" r="5.5" fill="#5270d8"/><circle cx="122" cy="111" r="5.5" fill="#5270d8"/><circle cx="148" cy="111" r="5.5" fill="#5270d8"/><polygon points="191,44 197,61 214,67 197,73 191,90 185,73 168,67 185,61" fill="#61e8d5" stroke="#5267e7" stroke-width="3" stroke-linejoin="round"/>
+</svg>
