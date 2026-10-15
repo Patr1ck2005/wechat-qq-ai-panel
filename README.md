@@ -28,6 +28,8 @@ cd panel
 
 The installer provisions a separate panel Python environment, reuses the access layer's existing runtime and caches, and creates a desktop shortcut. QQ setup retains the access layer's explicit network-exposure acknowledgement and manual login requirements.
 
+本机桌面入口及可选的 Project Hub 登记见 [Local Desktop Entry](WEB_ENTRY.md)。
+
 ## First use / 首次使用
 
 1. Set up available message sources using the [access project](https://github.com/Patr1ck2005/wechat-qq-access).

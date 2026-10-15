@@ -14,11 +14,13 @@ function Select-Public([IO.FileInfo]$File) {
     }
     $files.Add([pscustomobject]@{path=$relative; source=$File.FullName; bytes=$File.Length})
 }
-foreach($name in @('README.md','AGENTS.md','INTEGRATION.md','LICENSE','THIRD_PARTY.md','requirements.lock','start-panel.cmd')) {
+foreach($name in @('README.md','AGENTS.md','INTEGRATION.md','WEB_ENTRY.md','LICENSE','THIRD_PARTY.md','requirements.lock','start-panel.cmd')) {
     Select-Public (Get-Item -LiteralPath (Join-Path $root $name))
 }
 foreach($folder in @('wq_panel','panel_models','resources','scripts','tests','.github')) {
-    $pending=[Collections.Generic.Stack[string]]::new(); $pending.Push((Join-Path $root $folder))
+    $base=Get-Item -LiteralPath (Join-Path $root $folder) -Force
+    if($base.Attributes -band [IO.FileAttributes]::ReparsePoint) {throw 'Linked source directory is not permitted.'}
+    $pending=[Collections.Generic.Stack[string]]::new(); $pending.Push($base.FullName)
     while($pending.Count) {
         foreach($entry in Get-ChildItem -LiteralPath $pending.Pop() -Force) {
             if($entry.Attributes -band [IO.FileAttributes]::ReparsePoint) { throw 'Linked source directory is not permitted.' }
