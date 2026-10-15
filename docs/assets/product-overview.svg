@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1400" height="760" viewBox="0 0 1400 760" role="img" aria-labelledby="title desc">
 <title id="title">WeChat QQ AI Panel: your conversations, made actionable</title><desc id="desc">Product overview of the on-demand Windows panel. Fetch without AI, organize with editable presets, and enforce conversation permissions in the access layer. The depicted content is synthetic.</desc>
-<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#111a31" /><stop offset="1" stop-color="#17172f" /></linearGradient><linearGradient id="brand" x2="1" y2="1"><stop stop-color="#498dff" /><stop offset="1" stop-color="#7958ee" /></linearGradient><linearGradient id="bright" x2="1" y2="0"><stop stop-color="#83b6ff" /><stop offset="1" stop-color="#c2b1ff" /></linearGradient><radialGradient id="glow"><stop stop-color="#476cf0" stop-opacity=".26" /><stop offset="1" stop-color="#476cf0" stop-opacity="0" /></radialGradient><linearGradient id="tile" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#508bff" /><stop offset="1" stop-color="#5141cf" /></linearGradient><linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffffff" stop-opacity=".20" /><stop offset="1" stop-color="#ffffff" stop-opacity="0" /></linearGradient></defs>
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#151719" /><stop offset="1" stop-color="#151719" /></linearGradient><linearGradient id="brand" x2="1" y2="1"><stop stop-color="#94baff" /><stop offset="1" stop-color="#94baff" /></linearGradient><linearGradient id="bright" x2="1" y2="0"><stop stop-color="#f3f4f6" /><stop offset="1" stop-color="#f3f4f6" /></linearGradient><radialGradient id="glow"><stop stop-color="#476cf0" stop-opacity="0" /><stop offset="1" stop-color="#476cf0" stop-opacity="0" /></radialGradient><linearGradient id="tile" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#508bff" /><stop offset="1" stop-color="#5141cf" /></linearGradient><linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffffff" stop-opacity=".20" /><stop offset="1" stop-color="#ffffff" stop-opacity="0" /></linearGradient></defs>
 <g font-family="Segoe UI,Arial,Helvetica,sans-serif">
 <rect x="0" y="0" width="1400" height="760" rx="24" fill="url(#bg)" />
 <ellipse cx="1250" cy="180" rx="570" ry="400" fill="url(#glow)" />
@@ -11,55 +11,55 @@
 <path d="M 89 59 H 177 Q 204 59 204 86 V 139 Q 204 166 177 166 H 171 L 184 188 L 144 166 H 89 Q 63 166 63 139 V 86 Q 63 59 89 59 Z" fill="#ffffff" />
 <circle cx="96" cy="111" r="5.5" fill="#5270d8" /><circle cx="122" cy="111" r="5.5" fill="#5270d8" /><circle cx="148" cy="111" r="5.5" fill="#5270d8" /><polygon points="191,44 197,61 214,67 197,73 191,90 185,73 168,67 185,61" fill="#61e8d5" stroke="#5267e7" stroke-width="3" stroke-linejoin="round" />
 </g>
-<text x="145" y="80" font-size="23" font-weight="600" fill="#a6b6d8">WECHAT QQ</text>
-<text x="145" y="115" font-size="31" font-weight="700" fill="#fff">AI PANEL</text>
-<rect x="1090" y="59" width="254" height="34" rx="17" fill="#263853" />
-<text x="1104" y="82" font-size="15" font-weight="600" fill="#a9d6ff">ON-DEMAND DESKTOP</text>
-<text x="52" y="207" font-size="58" font-weight="700" fill="#fff">Less noise.</text>
-<text x="52" y="277" font-size="58" font-weight="700" fill="url(#bright)">More next steps.</text>
-<text x="55" y="326" font-size="24" font-weight="400" fill="#b6c3de">An AI brief for the conversations</text>
-<text x="55" y="360" font-size="24" font-weight="400" fill="#b6c3de">you choose to read.</text>
-<circle cx="63" cy="416" r="5" fill="#73dfcc" />
-<text x="82" y="424" font-size="21" font-weight="600" fill="#e0e9fc">Fetch first. Use AI when you ask.</text>
-<circle cx="63" cy="458" r="5" fill="#73dfcc" />
-<text x="82" y="466" font-size="21" font-weight="600" fill="#e0e9fc">Permissions separate from watching.</text>
-<circle cx="63" cy="500" r="5" fill="#73dfcc" />
-<text x="82" y="508" font-size="21" font-weight="600" fill="#e0e9fc">Your DSH profile or compatible API.</text>
-<rect x="54" y="562" width="154" height="34" rx="17" fill="#213254" />
-<text x="68" y="585" font-size="14" font-weight="600" fill="#8fb8ff">WINDOWS TRAY</text>
-<rect x="219" y="562" width="161" height="34" rx="17" fill="#213254" />
-<text x="233" y="585" font-size="14" font-weight="600" fill="#8fb8ff">NO FULL ARCHIVE</text>
-<rect x="675" y="159" width="674" height="468" rx="20" fill="#202a41" stroke="#3b4c70" stroke-width="1" />
-<rect x="675" y="159" width="674" height="46" rx="20" fill="#28344e" />
-<circle cx="701" cy="182" r="5" fill="#fc7a83" />
-<circle cx="720" cy="182" r="5" fill="#f0c26b" />
-<circle cx="739" cy="182" r="5" fill="#79d1b5" />
-<text x="766" y="188" font-size="16" font-weight="400" fill="#b9c6df">WeChat · QQ AI</text>
-<text x="705" y="247" font-size="25" font-weight="700" fill="#f1f5ff">New messages, organized.</text>
-<rect x="1179" y="223" width="141" height="34" rx="17" fill="#243d43" />
-<text x="1193" y="246" font-size="12" font-weight="600" fill="#88dbca">ON REQUEST</text>
-<text x="705" y="282" font-size="12" font-weight="600" fill="#a8b6d1">WATCHED CONVERSATIONS</text>
-<text x="705" y="315" font-size="18" font-weight="400" fill="#dce5f8">Studio group  +  Alex  +  Project notes</text>
-<rect x="705" y="339" width="294" height="42" rx="10" fill="#202b43" stroke="#3b4862" stroke-width="1" />
-<text x="721" y="366" font-size="17" font-weight="600" fill="#cdd8f0">↓  Fetch new messages</text>
-<rect x="1012" y="339" width="307" height="42" rx="10" fill="url(#brand)" />
-<text x="1028" y="366" font-size="17" font-weight="600" fill="#fff">Update brief</text>
-<path d="M706 406H1318" fill="none" stroke="#3a4761" stroke-width="1" />
-<text x="705" y="438" font-size="14" font-weight="700" fill="#8fb8ff">NEXT UP</text>
-<rect x="706" y="452" width="33" height="33" rx="10" fill="#2e4163" />
-<text x="713" y="475" font-size="14" font-weight="700" fill="#a9c8ff">01</text>
-<text x="752" y="473" font-size="19" font-weight="600" fill="#eef3ff">Reply to the design review</text>
-<text x="752" y="498" font-size="15" font-weight="400" fill="#a3b2cd">Alex · draft feedback by 16:00</text>
-<rect x="706" y="518" width="33" height="33" rx="10" fill="#2e4163" />
-<text x="713" y="541" font-size="14" font-weight="700" fill="#a9c8ff">02</text>
-<text x="752" y="539" font-size="19" font-weight="600" fill="#eef3ff">Prepare the weekly check-in</text>
-<text x="752" y="564" font-size="15" font-weight="400" fill="#a3b2cd">Studio group · agenda shared</text>
-<text x="708" y="603" font-size="13" font-weight="400" fill="#8d9bb7">Synthetic demo · translated UI illustration below</text>
-<text x="54" y="663" font-size="20" font-weight="600" fill="#dce8ff">Quick brief</text>
-<text x="292" y="663" font-size="20" font-weight="600" fill="#dce8ff">To-dos &amp; replies</text>
-<text x="602" y="663" font-size="20" font-weight="600" fill="#dce8ff">Daily review</text>
-<text x="1020" y="663" font-size="20" font-weight="600" fill="#dce8ff">Editable presets</text>
-<path d="M48 699H1352" fill="none" stroke="#2b3750" stroke-width="1" />
-<text x="48" y="731" font-size="16" font-weight="400" fill="#8d9bb7">A small panel. One shared access and permission layer.</text>
-<text x="1078" y="731" font-size="16" font-weight="400" fill="#8d9bb7">WeChat + QQ  /  Windows</text>
+<text x="145" y="80" font-size="23" font-weight="600" fill="#bcc2cb">WECHAT QQ</text>
+<text x="145" y="115" font-size="31" font-weight="700" fill="#f3f4f6">AI PANEL</text>
+<rect x="1090" y="59" width="254" height="34" rx="17" fill="#2a2e33" />
+<text x="1104" y="82" font-size="15" font-weight="600" fill="#f3f4f6">ON-DEMAND DESKTOP</text>
+<text x="52" y="207" font-size="58" font-weight="700" fill="#f3f4f6">Less noise.</text>
+<text x="52" y="277" font-size="58" font-weight="700" fill="#f3f4f6">More next steps.</text>
+<text x="55" y="326" font-size="24" font-weight="400" fill="#bcc2cb">An AI brief for the conversations</text>
+<text x="55" y="360" font-size="24" font-weight="400" fill="#bcc2cb">you choose to read.</text>
+<circle cx="63" cy="416" r="5" fill="#bcc2cb" />
+<text x="82" y="424" font-size="21" font-weight="600" fill="#f3f4f6">Recent chats first. Read on demand.</text>
+<circle cx="63" cy="458" r="5" fill="#bcc2cb" />
+<text x="82" y="466" font-size="21" font-weight="600" fill="#f3f4f6">Permissions separate from watching.</text>
+<circle cx="63" cy="500" r="5" fill="#bcc2cb" />
+<text x="82" y="508" font-size="21" font-weight="600" fill="#f3f4f6">Your DSH profile or compatible API.</text>
+<rect x="54" y="562" width="154" height="34" rx="17" fill="#2a2e33" />
+<text x="68" y="585" font-size="14" font-weight="600" fill="#94baff">WINDOWS TRAY</text>
+<rect x="219" y="562" width="161" height="34" rx="17" fill="#2a2e33" />
+<text x="233" y="585" font-size="14" font-weight="600" fill="#94baff">NO FULL ARCHIVE</text>
+<rect x="675" y="159" width="674" height="468" rx="20" fill="#202327" stroke="#555f6c" stroke-width="1" />
+<rect x="675" y="159" width="674" height="46" rx="20" fill="#2a2e33" />
+<circle cx="701" cy="182" r="5" fill="#bcc2cb" />
+<circle cx="720" cy="182" r="5" fill="#bcc2cb" />
+<circle cx="739" cy="182" r="5" fill="#bcc2cb" />
+<text x="766" y="188" font-size="16" font-weight="400" fill="#bcc2cb">WeChat · QQ AI</text>
+<text x="705" y="247" font-size="25" font-weight="700" fill="#f3f4f6">New messages, organized.</text>
+<rect x="1179" y="223" width="141" height="34" rx="17" fill="#2a2e33" />
+<text x="1193" y="246" font-size="12" font-weight="600" fill="#f3f4f6">ON REQUEST</text>
+<text x="705" y="282" font-size="12" font-weight="600" fill="#bcc2cb">WATCHED CONVERSATIONS</text>
+<text x="705" y="315" font-size="18" font-weight="400" fill="#f3f4f6">Studio group  +  Alex  +  Project notes</text>
+<rect x="705" y="339" width="294" height="42" rx="10" fill="#17191c" stroke="#8793a3" stroke-width="1" />
+<text x="721" y="366" font-size="17" font-weight="600" fill="#f3f4f6">↓  Fetch new messages</text>
+<rect x="1012" y="339" width="307" height="42" rx="10" fill="#94baff" />
+<text x="1028" y="366" font-size="17" font-weight="600" fill="#14213a">Update brief</text>
+<path d="M706 406H1318" fill="none" stroke="#555f6c" stroke-width="1" />
+<text x="705" y="438" font-size="14" font-weight="700" fill="#94baff">NEXT UP</text>
+<rect x="706" y="452" width="33" height="33" rx="10" fill="#2a2e33" />
+<text x="713" y="475" font-size="14" font-weight="700" fill="#94baff">01</text>
+<text x="752" y="473" font-size="19" font-weight="600" fill="#f3f4f6">Reply to the design review</text>
+<text x="752" y="498" font-size="15" font-weight="400" fill="#bcc2cb">Alex · draft feedback by 16:00</text>
+<rect x="706" y="518" width="33" height="33" rx="10" fill="#2a2e33" />
+<text x="713" y="541" font-size="14" font-weight="700" fill="#94baff">02</text>
+<text x="752" y="539" font-size="19" font-weight="600" fill="#f3f4f6">Prepare the weekly check-in</text>
+<text x="752" y="564" font-size="15" font-weight="400" fill="#bcc2cb">Studio group · agenda shared</text>
+<text x="708" y="603" font-size="13" font-weight="400" fill="#bcc2cb">Synthetic demo · translated UI illustration below</text>
+<text x="54" y="663" font-size="20" font-weight="600" fill="#f3f4f6">Quick brief</text>
+<text x="292" y="663" font-size="20" font-weight="600" fill="#f3f4f6">To-dos &amp; replies</text>
+<text x="602" y="663" font-size="20" font-weight="600" fill="#f3f4f6">Daily review</text>
+<text x="1020" y="663" font-size="20" font-weight="600" fill="#f3f4f6">Editable presets</text>
+<path d="M48 699H1352" fill="none" stroke="#555f6c" stroke-width="1" />
+<text x="48" y="731" font-size="16" font-weight="400" fill="#bcc2cb">Compact 600 px default width · shared conversation permissions.</text>
+<text x="1078" y="731" font-size="16" font-weight="400" fill="#bcc2cb">WeChat + QQ  /  Windows</text>
 </g></svg>

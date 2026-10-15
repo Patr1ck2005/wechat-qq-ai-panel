@@ -13,6 +13,7 @@ from .storage import Store
 
 
 APP_USER_MODEL_ID = "WeChatQQAI.Panel"
+MIN_WINDOW_WIDTH = 600
 
 
 def set_application_identity():
@@ -299,8 +300,8 @@ def run(config_path: Path | None = None):
     html = (Path(__file__).parent / "ui.html").read_text(encoding="utf-8")
     # Only the repository's bundled vector is inserted; message/model text never enters HTML.
     html = html.replace("<!--APP_ICON-->", svg_icon)
-    window = webview.create_window("微信 · QQ AI", html=html, width=820, height=720,
-                                   min_size=(600, 540), background_color="#f5f7fb", text_select=True)
+    window = webview.create_window("微信 · QQ AI", html=html, width=MIN_WINDOW_WIDTH, height=720,
+                                   min_size=(MIN_WINDOW_WIDTH, 540), background_color="#f3f4f5", text_select=True)
     expose_bridge(window, bridge)
     bridge.window = window
     stopped = threading.Event()

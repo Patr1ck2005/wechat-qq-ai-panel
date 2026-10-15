@@ -6,9 +6,9 @@ Windows tray panel for your existing WeChat and QQ conversations: fetch new mess
 
 微信／QQ新消息、AI摘要、待办与待回复，一个小窗口完成。默认按按钮执行，关注列表与允许读取范围分开管理。支持 DeepSeek Harness（DSH）和兼容 Chat Completions 的 API。
 
-Conversation selection separates QQ groups, private chats and device sessions by account and source type. Page loads and asynchronous actions show loading feedback with reduced-motion support.
+Conversation selection separates QQ groups, private chats and device/other sessions by account and source type. Within each section, recent activity comes first; unknown timestamps stay last, with stable ties. The default window is 600 px wide, with a compact, high-contrast neutral interface. Page loads and asynchronous actions show loading feedback with reduced-motion support.
 
-QQ 群聊、私聊和设备会话分区展示，可按类型筛选；页面载入和异步操作提供加载动画，并尊重系统减少动态效果设置。
+QQ 群聊、私聊和设备／其他会话分区展示，各分区内部按最近活跃优先，未知时间稳定后置。默认窗口宽 600 px，采用紧凑、高对比的中性灰阶界面；页面载入和异步操作提供加载动画，并尊重系统减少动态效果设置。
 
 | Read / 读取 | Organize / 整理 | Control / 控制 |
 |---|---|---|
@@ -19,7 +19,7 @@ QQ 群聊、私聊和设备会话分区展示，可按类型筛选；页面载�
 
 ![Synthetic panel interface showing message actions and separate QQ group, private, device/other permission controls](docs/assets/interface-preview.svg)
 
-**Synthetic demo / 合成数据示意。** These are vector illustrations of the current interface, with English labels for this preview. All names, counts, messages and results are invented. They are not live-account screenshots or evidence of a real model run. The installed interface currently uses Chinese labels.
+**Synthetic demo / 合成数据示意。** These are vector illustrations of the current interface, with English labels for this preview. All names, counts, messages and results are invented. The relative times in the sorting example are explanatory annotations; the app does not display these timestamps. These are not live-account screenshots or evidence of a real model run. The installed interface currently uses Chinese labels.
 
 以上展示当前界面的功能结构，预览采用英文标签；账号、名字、条数和结果均为合成数据。桌面、窗口与托盘使用同一套随安装包提供的图标。
 
@@ -37,8 +37,8 @@ wechat-qq-ai/
 # Fresh deployment: keep both repositories together.
 mkdir wechat-qq-ai
 cd wechat-qq-ai
-git clone --branch v0.2.2 https://github.com/Patr1ck2005/wechat-qq-access.git access
-git clone --branch v0.2.1 https://github.com/Patr1ck2005/wechat-qq-ai-panel.git panel
+git clone --branch v0.2.3 https://github.com/Patr1ck2005/wechat-qq-access.git access
+git clone --branch v0.2.2 https://github.com/Patr1ck2005/wechat-qq-ai-panel.git panel
 cd panel
 # Reuses an existing access deployment when available.
 ./scripts/install.ps1

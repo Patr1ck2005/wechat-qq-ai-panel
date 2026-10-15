@@ -2,11 +2,241 @@
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
 <title>微信 · QQ AI</title><style>
-:root{color-scheme:light dark;--bg:#f4f6fb;--card:#fff;--ink:#1c2942;--muted:#77829a;--line:#e5eaf3;--blue:#3977ed;--soft:#edf3ff;--red:#c23d51;--green:#248367;--shadow:0 12px 35px #34486a08;font:14px/1.55 "Segoe UI","Microsoft YaHei",sans-serif}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink)}button,input,select,textarea{font:inherit}button,select,input[type=checkbox]{cursor:pointer}button{border:1px solid var(--line);border-radius:10px;padding:8px 13px;background:var(--card);color:var(--ink)}button:hover{border-color:#a6bdf1;background:var(--soft)}button:disabled{opacity:.45;cursor:default}button.primary{background:var(--blue);color:#fff;border-color:var(--blue)}button.danger{color:var(--red)}input,select,textarea{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px;max-width:100%}input:not([type=checkbox]),textarea{width:100%}input[type=checkbox]{accent-color:var(--blue);width:16px;height:16px;vertical-align:middle}textarea{resize:vertical;min-height:110px}input:focus,textarea:focus,select:focus,button:focus-visible{outline:2px solid #8aaef9;outline-offset:2px}header{padding:23px 28px 13px;display:flex;align-items:center;justify-content:space-between}h1{font-size:22px;letter-spacing:-.6px;margin:0}h2{font-size:16px;margin:0 0 12px}h3{font-size:14px;margin:0}.brand{display:flex;gap:12px;align-items:center}.mark{width:39px;height:39px;display:grid;place-items:center;background:var(--blue);color:white;font-size:23px;border-radius:13px}.subtitle{color:var(--muted);font-size:11px;letter-spacing:.6px}.header-tools{display:flex;gap:6px}.header-tools button{padding:4px 10px;color:var(--muted);border:0;background:transparent}nav{padding:0 28px;display:flex;gap:24px;border-bottom:1px solid var(--line)}nav button{padding:12px 1px 11px;background:none;border:0;border-radius:0;color:var(--muted)}nav button.active{color:var(--blue);border-bottom:2px solid var(--blue);font-weight:600}main{padding:22px 28px 28px}.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:19px;box-shadow:var(--shadow);margin-bottom:15px}.row{display:flex;gap:10px;align-items:center}.between{justify-content:space-between}.grow{flex:1;min-width:0}.muted{color:var(--muted)}.small{font-size:12px}.pill{display:inline-flex;align-items:center;gap:6px;border-radius:20px;padding:4px 10px;background:var(--soft);font-size:11px;color:var(--blue)}.dot{width:6px;height:6px;border-radius:50%;background:var(--green)}.actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}.action{padding:17px;text-align:left;position:relative}.action b{font-size:15px;display:block;margin-bottom:4px}.action span{font-size:12px;opacity:.75}.action.primary{box-shadow:0 5px 15px #3977ed23}.action .arrow{position:absolute;right:16px;top:18px;font-size:21px}.field{margin:12px 0}.field label{display:block;font-size:12px;color:var(--muted);margin:0 0 5px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 13px}.grid2 .full{grid-column:1/-1}.status{padding-top:16px;border-top:1px solid var(--line);margin-top:16px;min-height:44px}.status.busy .dot{background:var(--blue);animation:pulse 1.2s infinite}@keyframes pulse{50%{opacity:.25}}.progress-text{font-size:12px;color:var(--muted)}#stop{margin-left:auto;padding:4px 10px}.result-head{display:flex;align-items:center;justify-content:space-between;gap:8px}.result-head h2{margin:0}.result-actions{display:flex;gap:5px}.result-actions button{font-size:12px;padding:5px 9px}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:14px/1.85 "Segoe UI","Microsoft YaHei",sans-serif;margin:16px 0 0;color:var(--ink)}.result-box{max-height:300px;overflow:auto}.result-box.expanded{max-height:none}.empty{padding:30px 0;text-align:center;color:var(--muted);font-size:13px}.empty .empty-icon{font-size:30px;color:#a2b9e8;margin-bottom:9px}details{border-top:1px solid var(--line);margin-top:14px;padding-top:10px}summary{cursor:pointer;color:var(--muted);font-size:12px}.source-list{font-size:11px;max-height:160px;overflow:auto;color:var(--muted);padding:10px 0;white-space:pre-wrap}.notice{padding:11px 14px;border-radius:10px;background:var(--soft);font-size:12px;color:var(--blue);margin-bottom:13px}.notice.warn{background:#fff5dd;color:#996a11}.notice.error{background:#fff0f1;color:var(--red)}.account{padding:13px 0;border-bottom:1px solid var(--line)}.account:last-child{border-bottom:0}.account-title{font-weight:600;max-width:300px;overflow-wrap:anywhere}.account-mode{width:190px}.conversation-list{max-height:300px;overflow:auto;border:1px solid var(--line);border-radius:10px;margin-top:13px}.conversation{display:grid;grid-template-columns:1fr 68px 68px;gap:8px;align-items:center;padding:9px 12px;border-bottom:1px solid var(--line)}.conversation:last-child{border:0}.conversation.head{font-size:11px;color:var(--muted);position:sticky;top:0;background:var(--card);z-index:1}.conversation label{text-align:center}.conversation .title{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.conversation .sub{font-size:10px;color:var(--muted)}.toolbar{display:flex;gap:10px;align-items:center;margin:12px 0}.toolbar input{flex:1}.footer-actions{display:flex;justify-content:flex-end;gap:8px;padding-top:15px}.cache{display:grid;grid-template-columns:1fr auto auto;gap:13px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}.cache:last-child{border:0}.cache button{font-size:12px}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);max-width:90vw;padding:10px 18px;border-radius:12px;background:var(--ink);color:var(--card);box-shadow:0 6px 25px #0002;z-index:10}.custom-picks{max-height:160px;overflow:auto;padding:9px 0}.custom-picks label{display:block;font-size:12px;padding:3px}.hidden,[hidden]{display:none!important}.policy-intro{margin:0 0 8px;font-size:12px;color:var(--muted)}.preset-controls{display:flex;gap:7px}.privacy-foot{font-size:11px;color:var(--muted);text-align:center;padding-top:2px}.setup-required{display:none}
-@media(prefers-color-scheme:dark){:root{--bg:#171c28;--card:#202735;--ink:#e5eaf5;--muted:#929eb5;--line:#323c50;--blue:#6499ff;--soft:#293851;--shadow:none}.notice.warn{background:#3a3222;color:#e3bf6c}.notice.error{background:#422932}.action.primary{color:#14213a}}
-@media(max-width:650px){header{padding:18px 18px 10px}nav{padding:0 18px;gap:20px}main{padding:17px 18px}.card{padding:15px}.grid2{grid-template-columns:1fr}.grid2 .full{grid-column:auto}.result-head{align-items:flex-start}.result-actions{flex-wrap:wrap}.account-mode{width:165px}}
-.loading-banner.error{color:var(--red)}.loading-banner.error .spinner{display:none;animation:none}.is-loading{position:relative}.busy-control::before,.spinner{content:"";display:inline-block;width:13px;height:13px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin .8s linear infinite;vertical-align:-2px;margin-right:7px}.busy-region{min-height:36px;pointer-events:none}.busy-region::after{content:"";position:absolute;right:12px;top:12px;width:14px;height:14px;border:2px solid var(--blue);border-right-color:transparent;border-radius:50%;animation:spin .8s linear infinite;background:var(--card);box-shadow:0 0 0 5px var(--card);z-index:3}.loading-banner{display:flex;align-items:center;gap:4px;padding:12px 16px;margin:0 28px;border:1px solid var(--line);border-radius:12px;background:var(--card);font-size:12px;color:var(--muted)}.loading-placeholder{padding:20px 14px;color:var(--muted);font-size:12px}.skeleton{height:9px;width:72%;background:linear-gradient(90deg,var(--line),var(--soft),var(--line));background-size:200% 100%;border-radius:5px;margin-top:14px;animation:shimmer 1.4s linear infinite}.skeleton.short{width:48%}.conversation-section{padding:9px 12px;background:var(--soft);color:var(--blue);font-size:12px;font-weight:600;border-bottom:1px solid var(--line)}.custom-section{margin:8px 0 4px;padding:6px 8px;background:var(--soft);border-radius:6px;color:var(--blue);font-size:11px;font-weight:600}.custom-filters{flex-wrap:wrap}.custom-filters input{min-width:150px}.custom-filters select{font-size:12px;max-width:205px}.type-filter{min-width:110px}.status.busy .dot{width:14px;height:14px;background:transparent;border:2px solid var(--blue);border-right-color:transparent;animation:spin .8s linear infinite}.busy-control.action::before{position:absolute;right:17px;top:20px}.busy-control.action .arrow{visibility:hidden}@keyframes spin{to{transform:rotate(360deg)}}@keyframes shimmer{to{background-position:-200% 0}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.skeleton{background:var(--line)}}
-.mark{width:44px;height:44px;background:transparent;border-radius:0;flex:none}.mark svg{display:block;width:100%;height:100%}
+/* Neutral surfaces and deliberate contrast; the product mark keeps its own color. */
+:root {
+  color-scheme: light dark;
+  --bg: #f3f4f5;
+  --card: #ffffff;
+  --input: #ffffff;
+  --inset: #f0f2f4;
+  --hover: #e9edf2;
+  --selected: #eaf0fd;
+  --ink: #202327;
+  --muted: #52606d;
+  --line: #b4bcc6;
+  --control-line: #7b8695;
+  --blue: #2859ba;
+  --accent-ink: #ffffff;
+  --soft: #edf1f8;
+  --red: #ad2941;
+  --green: #24714e;
+  --warn-bg: #fff4d9;
+  --warn-ink: #79550c;
+  --error-bg: #fff0f1;
+  --shadow: 0 2px 8px #17212e06;
+  font: 14px/1.55 "Segoe UI", "Microsoft YaHei", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #151719;
+    --card: #202327;
+    --input: #17191c;
+    --inset: #2a2e33;
+    --hover: #343a42;
+    --selected: #2b3b56;
+    --ink: #f3f4f6;
+    --muted: #bcc2cb;
+    --line: #555f6c;
+    --control-line: #8793a3;
+    --blue: #94baff;
+    --accent-ink: #14213a;
+    --soft: #293447;
+    --red: #ff9cad;
+    --green: #77d5a1;
+    --warn-bg: #3a3020;
+    --warn-ink: #f5d084;
+    --error-bg: #43262d;
+    --shadow: none;
+  }
+}
+
+/* Controls, text and keyboard focus. Disabled controls keep readable labels. */
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); }
+button, input, select, textarea { font: inherit; }
+button, select, input[type=checkbox] { cursor: pointer; }
+button {
+  border: 1px solid var(--control-line); border-radius: 8px;
+  padding: 8px 13px; background: var(--card); color: var(--ink);
+}
+button:hover:not(:disabled) { background: var(--hover); border-color: var(--muted); }
+button:disabled { color: var(--muted); background: var(--inset); border-color: var(--line); cursor: default; }
+button.primary { background: var(--blue); color: var(--accent-ink); border-color: var(--blue); }
+button.primary:hover:not(:disabled) { filter: brightness(.94); }
+button.primary:disabled { background: var(--inset); color: var(--muted); border-color: var(--line); }
+button.danger { color: var(--red); }
+input, select, textarea {
+  min-width: 0; max-width: 100%; border: 1px solid var(--control-line);
+  border-radius: 7px; padding: 8px; background: var(--input); color: var(--ink);
+}
+input::placeholder, textarea::placeholder { color: var(--muted); opacity: 1; }
+input:not([type=checkbox]), textarea, .field > select { width: 100%; }
+select { overflow: hidden; text-overflow: ellipsis; }
+input:disabled, select:disabled, textarea:disabled { color: var(--muted); background: var(--inset); cursor: default; }
+input[type=checkbox] {
+  appearance: none; position: relative; display: inline-grid; place-content: center;
+  width: 17px; height: 17px; padding: 0; margin: 3px 2px; flex: none;
+  border: 1.5px solid var(--control-line); border-radius: 4px; vertical-align: middle;
+}
+input[type=checkbox]:checked { background: var(--blue); border-color: var(--blue); }
+input[type=checkbox]:checked::after {
+  content: ""; width: 9px; height: 5px; margin-top: -2px;
+  border-left: 2px solid var(--accent-ink); border-bottom: 2px solid var(--accent-ink);
+  transform: rotate(-45deg);
+}
+input[type=checkbox]:disabled { cursor: default; background: var(--inset); border-color: var(--line); }
+input[type=checkbox]:checked:disabled { background: var(--muted); border-color: var(--muted); }
+input[type=checkbox]:checked:disabled::after { border-color: var(--card); }
+textarea { resize: vertical; min-height: 110px; }
+input:focus-visible, textarea:focus-visible, select:focus-visible, button:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--blue); outline-offset: 3px;
+}
+h1 { margin: 0; font-size: 22px; letter-spacing: -.6px; }
+h2 { margin: 0 0 12px; font-size: 16px; }
+h3 { margin: 0; font-size: 14px; }
+.muted, .small, .subtitle, .progress-text, .privacy-foot { overflow-wrap: anywhere; }
+.muted { color: var(--muted); }
+.small { font-size: 12px; }
+.hidden, [hidden] { display: none !important; }
+
+/* App frame and shared layouts. Children may shrink or wrap, never force a wide window. */
+header { padding: 23px 28px 13px; display: flex; gap: 16px; align-items: center; justify-content: space-between; }
+.brand { display: flex; gap: 12px; align-items: center; min-width: 0; }
+.brand > div:last-child { min-width: 0; }
+.mark { width: 44px; height: 44px; flex: none; }
+.mark svg { display: block; width: 100%; height: 100%; }
+.subtitle { color: var(--muted); font-size: 11px; letter-spacing: .3px; }
+.header-tools { display: flex; gap: 6px; flex: none; }
+.header-tools button { padding: 4px 10px; color: var(--muted); border-color: transparent; background: transparent; }
+nav { padding: 0 28px; display: flex; gap: 24px; border-bottom: 1px solid var(--line); }
+nav button { padding: 12px 1px 11px; background: none; border: 0; border-radius: 0; color: var(--muted); white-space: nowrap; }
+nav button.active { color: var(--ink); border-bottom: 2px solid var(--ink); font-weight: 600; }
+main { padding: 22px 28px 28px; }
+.card { min-width: 0; background: var(--card); border: 1px solid var(--line); border-radius: 13px; padding: 19px; box-shadow: var(--shadow); margin-bottom: 15px; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; min-width: 0; }
+.row > * { min-width: 0; }
+.between { justify-content: space-between; }
+.grow { flex: 1; min-width: 0; }
+.field { margin: 12px 0; min-width: 0; }
+.field label { display: block; margin: 0 0 5px; font-size: 12px; color: var(--muted); }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 13px; }
+.grid2 .full { grid-column: 1/-1; }
+.footer-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; padding-top: 15px; }
+.notice { padding: 11px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--inset); font-size: 12px; color: var(--ink); margin-bottom: 13px; overflow-wrap: anywhere; }
+.notice.warn { background: var(--warn-bg); color: var(--warn-ink); }
+.notice.error { background: var(--error-bg); color: var(--red); }
+.pill { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); border-radius: 20px; padding: 4px 10px; background: var(--inset); font-size: 11px; color: var(--muted); }
+.dot { width: 6px; height: 6px; flex: none; border-radius: 50%; background: var(--green); }
+.privacy-foot { padding-top: 2px; font-size: 11px; color: var(--muted); text-align: center; }
+
+/* Task actions and plain-text results. */
+.actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 18px; }
+.action { min-width: 0; padding: 17px 36px 17px 17px; text-align: left; position: relative; }
+.action b { display: block; margin-bottom: 4px; font-size: 15px; }
+.action span { font-size: 12px; }
+.action .arrow { position: absolute; right: 16px; top: 18px; font-size: 21px; }
+.status { padding-top: 16px; border-top: 1px solid var(--line); margin-top: 16px; min-height: 44px; }
+.progress-text { font-size: 12px; color: var(--muted); flex: 1; }
+#stop { margin-left: auto; padding: 4px 10px; }
+#task-error { margin-top: 8px; color: var(--red); overflow-wrap: anywhere; }
+.result-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
+.result-head h2 { margin: 0; }
+.result-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+.result-actions button { font-size: 12px; padding: 5px 9px; }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; font: 14px/1.85 "Segoe UI", "Microsoft YaHei", sans-serif; margin: 16px 0 0; color: var(--ink); }
+.result-box { max-height: 300px; overflow: auto; }
+.result-box.expanded { max-height: none; }
+.empty { padding: 30px 12px; text-align: center; color: var(--muted); font-size: 13px; }
+.empty .empty-icon { font-size: 30px; color: var(--muted); margin-bottom: 9px; }
+details { border-top: 1px solid var(--line); margin-top: 14px; padding-top: 10px; }
+summary { cursor: pointer; color: var(--muted); font-size: 12px; }
+.source-list { font-size: 11px; max-height: 160px; overflow: auto; color: var(--muted); padding: 10px 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+
+/* Account controls and familiar grouped conversation lists. */
+.policy-intro { margin: 10px 0 8px; font-size: 12px; color: var(--muted); }
+.account { display: grid; grid-template-columns: minmax(0, 1fr) minmax(180px, 205px); gap: 12px; padding: 13px 0; border-bottom: 1px solid var(--line); }
+.account:last-child { border-bottom: 0; }
+.account-title { min-width: 0; font-weight: 600; overflow-wrap: anywhere; }
+.account-mode { width: 100%; }
+.toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 12px 0; }
+.toolbar input { flex: 1 1 180px; width: 0; min-width: 140px; }
+.custom-filters select { min-width: 0; max-width: 205px; font-size: 12px; }
+.custom-filters select:not(.type-filter) { flex: 1 1 170px; }
+.custom-filters .type-filter { flex: 0 1 142px; width: 142px; }
+.conversation-list { max-height: 300px; overflow: auto; border: 1px solid var(--line); border-radius: 8px; margin-top: 13px; }
+.conversation { display: grid; grid-template-columns: minmax(0, 1fr) 68px 56px; gap: 8px; align-items: center; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+.conversation:last-child { border-bottom: 0; }
+.conversation:not(.head):hover { background: var(--hover); }
+.conversation > div { min-width: 0; }
+.conversation.head { padding-top: 8px; padding-bottom: 8px; font-size: 11px; color: var(--muted); position: sticky; top: 0; background: var(--card); z-index: 1; }
+.conversation.head > div:not(:first-child), .conversation label { text-align: center; }
+.conversation label { display: flex; align-items: center; justify-content: center; min-height: 28px; }
+.conversation .title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.conversation .sub { font-size: 11px; color: var(--muted); }
+.conversation-section { padding: 9px 12px; background: var(--inset); color: var(--ink); font-size: 12px; font-weight: 600; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+.custom-picks { max-height: 210px; overflow: auto; }
+.custom-picks label { display: flex; align-items: center; gap: 7px; font-size: 12px; padding: 7px 8px; overflow-wrap: anywhere; }
+.custom-picks label:hover { background: var(--hover); }
+.custom-section { margin: 8px 0 4px; padding: 7px 8px; background: var(--inset); border-radius: 6px; color: var(--ink); font-size: 11px; font-weight: 600; overflow-wrap: anywhere; }
+.preset-controls { display: flex; flex-wrap: wrap; gap: 7px; }
+.cache { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 12px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.cache > div { min-width: 0; overflow-wrap: anywhere; }
+.cache:last-child { border-bottom: 0; }
+.cache button { font-size: 12px; }
+.toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); max-width: 90vw; padding: 10px 18px; border-radius: 10px; background: var(--ink); color: var(--card); box-shadow: 0 6px 25px #0002; z-index: 10; overflow-wrap: anywhere; }
+
+/* Busy feedback is scoped to actual operations, never the quiet polling timers. */
+.is-loading { position: relative; }
+.busy-control::before, .spinner { content: ""; display: inline-block; width: 13px; height: 13px; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: spin .8s linear infinite; vertical-align: -2px; margin-right: 7px; }
+.busy-region { min-height: 36px; pointer-events: none; }
+.busy-region::after { content: ""; position: absolute; right: 12px; top: 12px; width: 14px; height: 14px; border: 2px solid var(--blue); border-right-color: transparent; border-radius: 50%; animation: spin .8s linear infinite; background: var(--card); box-shadow: 0 0 0 5px var(--card); z-index: 3; }
+.loading-banner { display: flex; align-items: center; gap: 4px; padding: 12px 16px; margin: 12px 28px 0; border: 1px solid var(--line); border-radius: 10px; background: var(--card); font-size: 12px; color: var(--muted); }
+.loading-banner.error { color: var(--red); }
+.loading-banner.error .spinner { display: none; animation: none; }
+.loading-placeholder { padding: 20px 14px; color: var(--muted); font-size: 12px; }
+.skeleton { height: 9px; width: 72%; background: linear-gradient(90deg, var(--line), var(--inset), var(--line)); background-size: 200% 100%; border-radius: 5px; margin-top: 14px; animation: shimmer 1.4s linear infinite; }
+.skeleton.short { width: 48%; }
+.status.busy .dot { width: 14px; height: 14px; background: transparent; border: 2px solid var(--blue); border-right-color: transparent; animation: spin .8s linear infinite; }
+.busy-control.action::before { position: absolute; right: 17px; top: 20px; }
+.busy-control.action .arrow { visibility: hidden; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes shimmer { to { background-position: -200% 0; } }
+
+/* Compact launch width is 600 px, including native window chrome. */
+@media (max-width: 680px) {
+  header { padding: 18px 18px 10px; gap: 10px; }
+  .brand { gap: 9px; }
+  .header-tools { gap: 2px; }
+  .header-tools button { padding: 4px 8px; }
+  nav { padding: 0 18px; gap: 20px; }
+  main { padding: 17px 16px 22px; }
+  .card { padding: 16px; }
+  .grid2 { grid-template-columns: minmax(0, 1fr); }
+  .grid2 .full { grid-column: auto; }
+  .custom-filters input { flex: 1 1 100%; width: 100%; }
+  .custom-filters select:not(.type-filter) { max-width: none; }
+  .account { grid-template-columns: minmax(0, 1fr) 190px; }
+  .action { padding: 14px 30px 14px 13px; }
+  .action .arrow { right: 11px; top: 14px; }
+  .busy-control.action::before { right: 10px; top: 17px; }
+  .loading-banner { margin-right: 16px; margin-left: 16px; }
+  #api-key { flex: 1 1 100%; }
+}
+@media (max-width: 480px) {
+  header { align-items: flex-start; }
+  .subtitle { max-width: 190px; }
+  h1 { font-size: 20px; }
+  nav { gap: 16px; }
+  nav button { font-size: 13px; }
+  .account { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .actions { grid-template-columns: minmax(0, 1fr); }
+  .cache { grid-template-columns: minmax(0, 1fr) auto; }
+  .cache > div:first-child { grid-column: 1/-1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .skeleton { background: var(--line); }
+}
 </style></head><body>
 <header><div class="brand"><div class="mark"><!--APP_ICON--></div><div><h1>微信 · QQ AI</h1><div class="subtitle">让重要消息，有条理地来到你面前</div></div></div><div class="header-tools"><button id="hide" title="隐藏到托盘">收起</button><button id="quit" title="完全退出">退出</button></div></header>
 <nav aria-label="主导航"><button class="active" data-tab="inbox">消息整理</button><button data-tab="privacy">会话权限</button><button data-tab="settings">模型与预设</button><button data-tab="storage">空间管理</button></nav>
@@ -36,7 +266,21 @@ function typeOfConversation(c){return ['group','private','device'].includes(c.ki
 function platformLabel(platform){return platform==='qq'?'QQ':platform==='wechat'?'微信':String(platform).toUpperCase()}
 const typeLabels={group:'群聊',private:'私聊',device:'设备／其他会话',other:'其他会话'},typeOrder={group:0,private:1,device:2,other:3};
 for(const id of ['custom-kind','filter-kind'])for(const option of $(id).children)if(option.value==='device')option.textContent=typeLabels.device;
-function conversationGroups(conversations,{account='',kind='',search=''}={}){const groups=new Map();search=search.toLocaleLowerCase();for(const c of conversations){const type=typeOfConversation(c);if(account&&key(c)!==account||kind&&type!==kind||search&&!String(c.title).toLocaleLowerCase().includes(search))continue;const id=key(c)+'\u001f'+type;if(!groups.has(id))groups.set(id,{id,platform:c.platform,account:c.account,type,conversations:[]});groups.get(id).conversations.push(c)}return [...groups.values()].sort((a,b)=>(a.platform==='qq'?0:a.platform==='wechat'?1:2)-(b.platform==='qq'?0:b.platform==='wechat'?1:2)||String(a.platform).localeCompare(String(b.platform))||String(a.account).localeCompare(String(b.account))||typeOrder[a.type]-typeOrder[b.type])}
+// Only source-provided finite UNIX seconds count as activity; unknown times remain stable at the end.
+function activityOf(c){return typeof c.last_active==='number'&&Number.isFinite(c.last_active)&&c.last_active>=0?c.last_active:null}
+function byRecentActivity(conversations){return conversations.map((c,index)=>({c,index,time:activityOf(c)})).sort((a,b)=>(a.time===null)-(b.time===null)||(b.time??0)-(a.time??0)||a.index-b.index).map(item=>item.c)}
+function conversationGroups(conversations,{account='',kind='',search=''}={}){
+  const groups=new Map();search=search.toLocaleLowerCase();
+  for(const c of conversations){
+    const type=typeOfConversation(c);
+    if(account&&key(c)!==account||kind&&type!==kind||search&&!String(c.title).toLocaleLowerCase().includes(search))continue;
+    const id=key(c)+'\u001f'+type;
+    if(!groups.has(id))groups.set(id,{id,platform:c.platform,account:c.account,type,conversations:[]});
+    groups.get(id).conversations.push(c);
+  }
+  for(const group of groups.values())group.conversations=byRecentActivity(group.conversations);
+  return [...groups.values()].sort((a,b)=>(a.platform==='qq'?0:a.platform==='wechat'?1:2)-(b.platform==='qq'?0:b.platform==='wechat'?1:2)||String(a.platform).localeCompare(String(b.platform))||String(a.account).localeCompare(String(b.account))||typeOrder[a.type]-typeOrder[b.type]);
+}
 function groupHeading(group,cls){const heading=element('div',cls,platformLabel(group.platform)+' '+typeLabels[group.type]+' · 账号 '+group.account+' · '+group.conversations.length);heading.setAttribute('role','heading');heading.setAttribute('aria-level','3');heading.setAttribute('data-kind',group.type);heading.setAttribute('data-account',key(group));return heading}
 setDisabled('copy','result',true);setDisabled('export','result',true);setDisabled('save-policy','policy',true);
 function toast(text){$('toast').textContent=text;$('toast').classList.remove('hidden');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.add('hidden'),4200)}
@@ -57,14 +301,14 @@ $('save-key').onclick=()=>withBusy('save-key',{buttons:['save-key','delete-key']
 $('delete-key').onclick=()=>{if(!confirm('删除所选名称的 Windows 凭据？'))return;return withBusy('delete-key',{buttons:['delete-key','save-key']},async()=>{await api('delete_api_key',$('api-credential_name').value);toast('凭据已删除')}).catch(e=>toast(e.message))};
 async function loadCatalog(){return withBusy('catalog',{buttons:['reload-catalog','save-policy','search-conversations','filter-account','filter-kind'],regions:['account-modes','conversation-list']},async()=>{if(!catalog)loadingPlaceholder('conversation-list','正在读取账号与会话目录…');catalog=await api('catalog');policies=new Map();selected=new Set();watched=new Set(catalog.watched||[]);for(const p of catalog.policy?.accounts||[]){policies.set(key(p),p.mode);for(const id of p.conversations)selected.add(key(p)+'\u001f'+id)}$('account-modes').replaceChildren();$('filter-account').replaceChildren(element('option','','全部账号'));$('filter-account').firstChild.value='';for(const account of catalog.accounts){const k=key(account),row=element('div','account row between');const name=element('div','account-title',platformLabel(account.platform)+' · '+account.account);const select=element('select','account-mode');select.setAttribute('aria-label','账号权限模式');for(const [v,t]of [['','请选择权限模式'],['allow','白名单 · 只允许勾选'],['deny','排除名单 · 禁止勾选']]){const o=element('option','',t);o.value=v;select.append(o)}select.value=policies.get(k)||'';select.onchange=()=>{policies.set(k,select.value);renderConversations()};row.append(name,select);$('account-modes').append(row);const option=element('option','',platformLabel(account.platform)+' · '+account.account);option.value=k;$('filter-account').append(option)}renderConversations();$('onboarding').classList.toggle('hidden',!!catalog.policy);if(!catalog.accounts.length)toast('暂无账号，请确认底座的微信／QQ接入状态')}).catch(e=>{if(!catalog)$('conversation-list').replaceChildren(element('div','empty','目录未加载成功，点击“刷新列表”重试。'));throw e})}
 function isAllowed(c){const mode=policies.get(key(c));const included=selected.has(key(c)+'\u001f'+c.conversation_id);return mode==='allow'?included:mode==='deny'?!included:false}
-function renderConversations(){if(!catalog)return;const list=$('conversation-list');list.replaceChildren();const head=element('div','conversation head');head.append(element('div','','会话'),element('div','','权限勾选'),element('div','','关注'));list.append(head);const groups=conversationGroups(catalog.conversations,{search:$('search-conversations').value,account:$('filter-account').value,kind:$('filter-kind').value});for(const group of groups){list.append(groupHeading(group,'conversation-section'));for(const c of group.conversations){const row=element('div','conversation'),name=element('div');row.setAttribute('data-kind',typeOfConversation(c));row.setAttribute('data-ref',c.ref);name.append(element('div','title',c.title),element('div','sub',typeLabels[typeOfConversation(c)]));const toggle=element('input');toggle.type='checkbox';toggle.checked=selected.has(key(c)+'\u001f'+c.conversation_id);toggle.disabled=!policies.get(key(c));toggle.title=policies.get(key(c))==='deny'?'勾选即禁止读取':'勾选即允许读取';toggle.onchange=()=>{const id=key(c)+'\u001f'+c.conversation_id;toggle.checked?selected.add(id):selected.delete(id);if(!isAllowed(c))watched.delete(c.ref);renderConversations()};const watch=element('input');watch.type='checkbox';watch.checked=watched.has(c.ref);watch.disabled=!isAllowed(c);watch.title='加入日常关注';watch.onchange=()=>watch.checked?watched.add(c.ref):watched.delete(c.ref);const a=element('label'),b=element('label');a.append(toggle);b.append(watch);row.append(name,a,b);list.append(row)}}if(!groups.length)list.append(element('div','empty','没有匹配会话'));setDisabled('save-policy','policy',!catalog.accounts.length||catalog.accounts.some(a=>!policies.get(key(a))));$('policy-warning').textContent='群聊、私聊和设备／其他会话按账号分区；分类由消息底座提供。筛选只改变显示，已选会话仍保留。保存会停止当前任务并隐藏撤权结果。'}
+function renderConversations(){if(!catalog)return;const list=$('conversation-list');list.replaceChildren();const head=element('div','conversation head');head.append(element('div','','会话'),element('div','','权限勾选'),element('div','','关注'));list.append(head);const groups=conversationGroups(catalog.conversations,{search:$('search-conversations').value,account:$('filter-account').value,kind:$('filter-kind').value});for(const group of groups){list.append(groupHeading(group,'conversation-section'));for(const c of group.conversations){const row=element('div','conversation'),name=element('div');row.setAttribute('data-kind',typeOfConversation(c));row.setAttribute('data-ref',c.ref);name.append(element('div','title',c.title),element('div','sub',typeLabels[typeOfConversation(c)]));const toggle=element('input');toggle.type='checkbox';toggle.checked=selected.has(key(c)+'\u001f'+c.conversation_id);toggle.disabled=!policies.get(key(c));toggle.title=policies.get(key(c))==='deny'?'勾选即禁止读取':'勾选即允许读取';toggle.onchange=()=>{const id=key(c)+'\u001f'+c.conversation_id;toggle.checked?selected.add(id):selected.delete(id);if(!isAllowed(c))watched.delete(c.ref);renderConversations()};const watch=element('input');watch.type='checkbox';watch.checked=watched.has(c.ref);watch.disabled=!isAllowed(c);watch.title='加入日常关注';watch.onchange=()=>watch.checked?watched.add(c.ref):watched.delete(c.ref);const a=element('label'),b=element('label');a.append(toggle);b.append(watch);row.append(name,a,b);list.append(row)}}if(!groups.length)list.append(element('div','empty','没有匹配会话'));setDisabled('save-policy','policy',!catalog.accounts.length||catalog.accounts.some(a=>!policies.get(key(a))));$('policy-warning').textContent='群聊、私聊和设备／其他会话按账号分区；分区内按最近消息排序，未知时间排后。筛选只改变显示，已选会话仍保留。保存会停止当前任务并隐藏撤权结果。'}
 $('reload-catalog').onclick=()=>loadCatalog().catch(e=>toast(e.message));$('search-conversations').oninput=renderConversations;$('filter-account').onchange=renderConversations;$('filter-kind').onchange=renderConversations;
 $('save-policy').onclick=()=>withBusy('save-policy',{buttons:['save-policy','reload-catalog','fetch','summarize'],regions:['tab-privacy']},async()=>{policySaving=true;clearResult();try{const accounts=catalog.accounts.map(a=>({...a,mode:policies.get(key(a)),conversations:catalog.conversations.filter(c=>key(c)===key(a)&&selected.has(key(c)+'\u001f'+c.conversation_id)).map(c=>c.conversation_id)}));await api('save_policy',accounts,[...watched]);const canonical=await api('bootstrap');if(!Array.isArray(canonical.settings?.watched))throw new Error('权限已保存，关注列表同步未完成，请刷新后重试。');settings.watched=[...canonical.settings.watched];watched=new Set(settings.watched);$('onboarding').classList.add('hidden');await loadAllowed();policySaving=false;await loadResult();toast('权限与关注已保存')}finally{policySaving=false}}).catch(e=>toast(e.message));
 async function loadAllowed(){return withBusy('allowed',{buttons:['scope','custom-search','custom-account','custom-kind','fetch','summarize'],regions:['custom-picks','scope-info']},async()=>{if(!allowed.length)loadingPlaceholder('custom-picks','正在加载获准会话…');try{const data=await api('conversations');allowed=data.conversations||[];const allowedRefs=new Set(allowed.map(c=>c.ref));custom=new Set([...custom].filter(ref=>allowedRefs.has(ref)));const previous=$('custom-account').value;$('custom-account').replaceChildren(element('option','','全部账号'));$('custom-account').firstChild.value='';const accounts=new Map(allowed.map(c=>[key(c),c]));for(const [id,c]of accounts){const option=element('option','',platformLabel(c.platform)+' · '+c.account);option.value=id;$('custom-account').append(option)}$('custom-account').value=accounts.has(previous)?previous:'';renderCustom();updateScopeInfo()}catch(e){allowed=[];custom.clear();renderCustom();updateScopeInfo();if(!['POLICY_REQUIRED','POLICY_INVALID'].includes(e.code))toast(e.message)}})}
 function renderCustom(){const box=$('custom-picks');box.replaceChildren();const groups=conversationGroups(allowed,{search:$('custom-search').value,account:$('custom-account').value,kind:$('custom-kind').value});for(const group of groups){box.append(groupHeading(group,'custom-section'));for(const c of group.conversations){const label=element('label'),input=element('input');label.setAttribute('data-kind',typeOfConversation(c));label.setAttribute('data-ref',c.ref);input.type='checkbox';input.checked=custom.has(c.ref);input.onchange=()=>{input.checked?custom.add(c.ref):custom.delete(c.ref);updateScopeInfo()};label.append(input,document.createTextNode(' '+c.title));box.append(label)}}if(!groups.length)box.append(element('div','muted small',allowed.length?'没有匹配的获准会话。':'尚无获准会话，请先设置权限。'))}
 $('custom-search').oninput=renderCustom;$('custom-account').onchange=renderCustom;$('custom-kind').onchange=renderCustom;
 function chosenRefs(){return $('scope').value==='all'?allowed.map(c=>c.ref):$('scope').value==='custom'?[...custom]:null}
-function updateScopeInfo(){const refs=chosenRefs()||(settings?.watched||[]),chosen=allowed.filter(c=>refs.includes(c.ref)),counts=new Map();for(const c of chosen){const type=typeOfConversation(c),label=platformLabel(c.platform)+typeLabels[type];counts.set(label,(counts.get(label)||0)+1)}const breakdown=[...counts].map(([label,count])=>label+' '+count).join('、');$('scope-info').textContent='本次范围 '+refs.length+' 个会话'+(breakdown?'（'+breakdown+'）':'')+' · 筛选只改变显示，已选会话仍保留。首次最近24小时，此后接续成功进度；今日回顾从本地零点起。'}
+function updateScopeInfo(){const refs=chosenRefs()||(settings?.watched||[]),chosen=allowed.filter(c=>refs.includes(c.ref)),counts=new Map();for(const c of chosen){const type=typeOfConversation(c),label=platformLabel(c.platform)+typeLabels[type];counts.set(label,(counts.get(label)||0)+1)}const breakdown=[...counts].map(([label,count])=>label+' '+count).join('、');$('scope-info').textContent='本次范围 '+refs.length+' 个会话'+(breakdown?'（'+breakdown+'）':'')+' · 列表按最近消息排序；筛选只改变显示，已选会话仍保留。首次最近24小时，此后接续成功进度；今日回顾从本地零点起。'}
 $('scope').onchange=async()=>{const hidden=$('scope').value!=='custom';$('custom-picks').classList.toggle('hidden',hidden);$('custom-controls').classList.toggle('hidden',hidden);await loadAllowed();updateScopeInfo()};
 function applyTaskStatus(s){$('progress').textContent=s.progress;$('task-status').classList.toggle('busy',s.busy);$('task-status').setAttribute('aria-busy',String(s.busy));$('stop').classList.toggle('hidden',!s.busy);for(const id of ['fetch','summarize','save-settings'])setDisabled(id,'task',s.busy);if(!s.busy)stopRequested=false;setDisabled('stop','stopping',stopRequested);$('stop').classList.toggle('busy-control',stopRequested);$('stop').setAttribute('aria-busy',String(stopRequested));$('task-error').classList.toggle('hidden',!s.error);$('task-error').textContent=s.error?s.error.code:''}
 async function start(action){return withBusy('start',{buttons:['fetch','summarize'],regions:['scope-info']},async()=>{statusEpoch++;try{const s=await api('start',action,$('preset').value,chosenRefs());applyTaskStatus(s);await poll()}catch(e){toast(e.message);if(e.code==='NOTHING_SELECTED'||e.code==='POLICY_REQUIRED')tab('privacy')}})}$('fetch').onclick=()=>start('fetch');$('summarize').onclick=()=>start('summarize');$('stop').onclick=()=>withBusy('stop',{buttons:['stop']},async()=>{stopRequested=true;setDisabled('stop','stopping',true);try{await api('stop');$('progress').textContent='正在停止，等待当前操作返回…'}catch(e){stopRequested=false;setDisabled('stop','stopping',false);throw e}}).catch(e=>toast(e.message)).finally(()=>{$('stop').classList.toggle('busy-control',stopRequested);$('stop').setAttribute('aria-busy',String(stopRequested))});

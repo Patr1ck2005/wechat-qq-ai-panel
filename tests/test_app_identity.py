@@ -48,6 +48,8 @@ class ApplicationIdentityTests(unittest.TestCase):
                 patch.object(app, "set_application_identity", side_effect=lambda: events.append("identity")):
             app.run()
         self.assertEqual(events, ["identity", "window"])
+        self.assertEqual(webview.create_window.call_args.kwargs["width"], 600)
+        self.assertEqual(webview.create_window.call_args.kwargs["min_size"][0], 600)
         self.assertEqual(webview.start.call_args.kwargs["icon"], str(icon))
         supplied_tray = pystray.Icon.call_args.args[1]
         self.assertEqual(supplied_tray.tobytes(), tray_image.tobytes())

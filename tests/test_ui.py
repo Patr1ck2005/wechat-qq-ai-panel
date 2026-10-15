@@ -115,6 +115,52 @@ assert(el('scope-info').textContent.includes('QQ私聊 1'));
 assert(el('scope-info').textContent.includes('已选会话仍保留'));
 ''')
 
+    def test_activity_order_is_recent_first_and_stable_for_equal_or_unknown_times(self):
+        self.run_js(r'''
+const times=[null,25,100,100,undefined,-1,NaN,Infinity,'999',false,0];
+const source=times.map((last_active,index)=>({platform:'qq',account:'a',kind:'group',ref:String(index),title:'合成会话',last_active}));
+const original=source.map(c=>c.ref);
+const expected=['2','3','1','10','0','4','5','6','7','8','9'];
+assert.deepEqual(Array.from(context.byRecentActivity(source),c=>c.ref),expected);
+assert.deepEqual(source.map(c=>c.ref),original,'sorting must not mutate source data');
+const mixed=[...source,{platform:'qq',account:'a',kind:'private',ref:'private',title:'合成私聊',last_active:999},
+ {platform:'qq',account:'b',kind:'group',ref:'other-account',title:'其他账号',last_active:1000}];
+const groups=context.conversationGroups(mixed);
+assert.deepEqual(Array.from(groups,g=>g.account+':'+g.type),['a:group','a:private','b:group']);
+assert.deepEqual(Array.from(groups[0].conversations,c=>c.ref),expected);
+assert.equal(groups[1].conversations[0].ref,'private','activity must not mix conversation types');
+''')
+
+    def test_both_conversation_lists_sort_by_activity_without_changing_hidden_selection(self):
+        self.run_js(r'''
+evaluate(`
+settings={watched:['old']};
+catalog={accounts:[{platform:'qq',account:'a'}],conversations:[
+ {platform:'qq',account:'a',conversation_id:'old-id',ref:'old',title:'历史会话',kind:'group',last_active:10},
+ {platform:'qq',account:'a',conversation_id:'unknown-id',ref:'unknown',title:'未知会话',kind:'group'},
+ {platform:'qq',account:'a',conversation_id:'new-id',ref:'new',title:'最新会话',kind:'group',last_active:100}
+]};
+policies=new Map([[key(catalog.accounts[0]),'allow']]);
+selected=new Set([key(catalog.accounts[0])+'\u001fold-id',key(catalog.accounts[0])+'\u001fnew-id']);
+watched=new Set(['old']);allowed=catalog.conversations;custom=new Set(['old','new']);
+`);
+const refs=id=>el(id).children.filter(n=>n.getAttribute('data-ref')).map(n=>n.getAttribute('data-ref'));
+context.renderConversations();context.renderCustom();
+assert.deepEqual(refs('conversation-list'),['new','old','unknown']);
+assert.deepEqual(refs('custom-picks'),['new','old','unknown']);
+el('search-conversations').value='最新';el('custom-search').value='最新';
+context.renderConversations();context.renderCustom();
+assert.deepEqual(refs('conversation-list'),['new']);assert.deepEqual(refs('custom-picks'),['new']);
+assert.equal(evaluate('selected.size'),2);assert.deepEqual(Array.from(evaluate('watched')),['old']);
+el('scope').value='custom';assert.deepEqual(Array.from(context.chosenRefs()),['old','new']);
+el('search-conversations').value='';el('custom-search').value='';
+context.renderConversations();context.renderCustom();
+assert.deepEqual(refs('conversation-list'),['new','old','unknown']);
+const old=el('conversation-list').children.find(n=>n.getAttribute('data-ref')==='old');
+assert.equal(old.children[1].children[0].checked,true);assert.equal(old.children[2].children[0].checked,true);
+assert.equal(el('custom-picks').children.find(n=>n.getAttribute('data-ref')==='old').children[0].checked,true);
+''')
+
     def test_busy_deduplicates_and_restores_after_success_or_failure_without_undoing_task_state(self):
         self.run_js(r'''
 let resolve,calls=0;
