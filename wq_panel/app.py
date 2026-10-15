@@ -232,7 +232,7 @@ class SingleInstance:
                     close(handle)
 
 
-def run():
+def run(config_path: Path | None = None):
     instance = SingleInstance()
     if not instance.primary:
         instance.close()
@@ -241,7 +241,7 @@ def run():
     import pystray
     from PIL import Image, ImageDraw
     store = Store()
-    controller = Controller(AccessClient(), store)
+    controller = Controller(AccessClient(config_path), store)
     try:
         store.startup_cleanup()
     except Exception:

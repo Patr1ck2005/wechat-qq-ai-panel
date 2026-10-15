@@ -1,11 +1,19 @@
 #Requires -Version 7.0
 [CmdletBinding()]
 param([string]$PythonExe,
-    [string]$ConfigPath = $(if ($env:MESSAGING_ACCESS_CONFIG) { $env:MESSAGING_ACCESS_CONFIG } else { Join-Path $env:LOCALAPPDATA 'MessagingAccess/deployment.json' }),
+    [string]$ConfigPath,
     [switch]$SkipShortcut)
 $ErrorActionPreference = 'Stop'
 if (-not $IsWindows) { throw 'Windows 10/11 is required.' }
 $root = [IO.Path]::GetFullPath((Split-Path $PSScriptRoot -Parent))
+if (-not $ConfigPath) {
+    $regularConfig = Join-Path ([Environment]::GetFolderPath('UserProfile')) '.local/share/wechat-qq-access/deployment.json'
+    $legacyConfig = Join-Path $env:LOCALAPPDATA 'MessagingAccess/deployment.json'
+    $ConfigPath = if ($env:MESSAGING_ACCESS_CONFIG) { $env:MESSAGING_ACCESS_CONFIG }
+        elseif (Test-Path -LiteralPath $regularConfig) { $regularConfig }
+        elseif (Test-Path -LiteralPath $legacyConfig) { $legacyConfig }
+        else { $regularConfig }
+}
 if (-not (Test-Path -LiteralPath $ConfigPath)) {
     $accessInstaller = Join-Path (Split-Path $root -Parent) 'access/scripts/install.ps1'
     if (-not (Test-Path -LiteralPath $accessInstaller)) { throw 'Clone wechat-qq-access into the sibling access directory first.' }
@@ -31,6 +39,11 @@ if (-not (Test-Path -LiteralPath $python)) {
 if ($LASTEXITCODE -ne 0) { throw 'Panel dependency installation failed.' }
 & $python -m pip check
 if ($LASTEXITCODE -ne 0) { throw 'Panel dependencies are incompatible.' }
+# Persist the file's actual namespace; GetFullPath alone cannot resolve MSIX
+# AppData redirection when the installer was launched by a packaged desktop app.
+$canonicalConfig = & $python -I -X utf8 -c 'from pathlib import Path; import sys; print(Path(sys.argv[1]).resolve(strict=True))' $ConfigPath
+if ($LASTEXITCODE -ne 0 -or -not [IO.Path]::IsPathFullyQualified($canonicalConfig)) { throw 'Cannot resolve the installed access configuration.' }
+$ConfigPath = $canonicalConfig.Trim()
 $private = Join-Path $env:LOCALAPPDATA 'WeChatQQAIPanel'
 [void][IO.Directory]::CreateDirectory($private)
 [IO.File]::WriteAllText((Join-Path $private 'access-config.json'),
@@ -39,7 +52,7 @@ if (-not $SkipShortcut) {
     $shell = New-Object -ComObject WScript.Shell
     $shortcut = $shell.CreateShortcut((Join-Path ([Environment]::GetFolderPath('Desktop')) 'WeChat QQ AI Panel.lnk'))
     $shortcut.TargetPath = Join-Path $venv 'Scripts/pythonw.exe'
-    $shortcut.Arguments = '-m wq_panel'
+    $shortcut.Arguments = '-m wq_panel --access-config "' + $ConfigPath + '"'
     $shortcut.WorkingDirectory = $root
     $shortcut.Description = 'WeChat / QQ AI message panel with conversation permissions'
     $shortcut.Save()

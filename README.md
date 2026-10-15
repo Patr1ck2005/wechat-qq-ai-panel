@@ -18,8 +18,8 @@ wechat-qq-ai/
 # Fresh deployment: keep both repositories together.
 mkdir wechat-qq-ai
 cd wechat-qq-ai
-git clone --branch v0.2.0 https://github.com/Patr1ck2005/wechat-qq-access.git access
-git clone --branch v0.1.0 https://github.com/Patr1ck2005/wechat-qq-ai-panel.git panel
+git clone --branch v0.2.1 https://github.com/Patr1ck2005/wechat-qq-access.git access
+git clone --branch v0.1.1 https://github.com/Patr1ck2005/wechat-qq-ai-panel.git panel
 cd panel
 # Reuses an existing access deployment when available.
 ./scripts/install.ps1
@@ -27,6 +27,8 @@ cd panel
 ```
 
 The installer provisions a separate panel Python environment, reuses the access layer's existing runtime and caches, and creates a desktop shortcut. QQ setup retains the access layer's explicit network-exposure acknowledgement and manual login requirements.
+
+New access deployments keep their private data under `%USERPROFILE%/.local/share/wechat-qq-access`, outside AppData virtualization. The desktop shortcut pins the selected configuration explicitly; existing custom and legacy configurations remain supported.
 
 本机桌面入口及可选的 Project Hub 登记见 [Local Desktop Entry](WEB_ENTRY.md)。
 
@@ -50,6 +52,8 @@ This protects this product's data flow. Other applications running with your ful
 ## Storage / 存储
 
 Settings and latest results are under `%LOCALAPPDATA%/WeChatQQAIPanel`. The panel does not create another complete chat archive. DSH context/session logs use a dedicated panel directory and can contain the submitted message context. Storage preview reports these separately and warns at 200 MiB. Cleanup moves owned inactive files to Windows Recycle Bin; it does not free physical disk space until the bin is emptied by the user.
+
+If the panel cannot find its access deployment, a bounded `connection-diagnostic.json` in that same private directory records the failure stage, configuration source and existence checks. It contains no paths, account identifiers, message text or credentials.
 
 ## Development / 开发
 

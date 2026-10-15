@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 from panel_fixtures import RecycleFixture
 import unittest
+import threading
 from unittest.mock import patch
 
 from wq_panel.access import AccessClient, AccessError
@@ -12,6 +13,8 @@ class AccessClientTests(unittest.TestCase):
     def setUp(self):
         self.temp = RecycleFixture()
         self.root = Path(self.temp.name)
+        self.user_home = patch("wq_panel.access.Path.home", return_value=self.root)
+        self.user_home.start()
         self.environment = patch.dict("os.environ", {"LOCALAPPDATA": str(self.root), "MESSAGING_ACCESS_CONFIG": ""})
         self.environment.start()
         self.python = self.root / "python.exe"
@@ -23,6 +26,27 @@ class AccessClientTests(unittest.TestCase):
     def tearDown(self):
         self.temp.cleanup()
         self.environment.stop()
+        self.user_home.stop()
+
+    def test_regular_user_config_precedes_legacy_without_invalid_fallback(self):
+        regular = self.root / ".local/share/wechat-qq-access/deployment.json"
+        legacy = self.root / "MessagingAccess/deployment.json"
+        regular.parent.mkdir(parents=True)
+        legacy.parent.mkdir()
+        regular.write_bytes(self.config.read_bytes())
+        legacy.write_bytes(self.config.read_bytes())
+        reader = AccessClient()
+        self.assertEqual(reader.config_path, regular)
+        regular.write_text("invalid", encoding="utf-8")
+        with self.assertRaises(AccessError) as error:
+            reader._deployment()
+        self.assertEqual(error.exception.code, "DEPLOYMENT_CONFIG_INVALID")
+
+    def test_legacy_default_remains_available_when_regular_config_absent(self):
+        legacy = self.root / "MessagingAccess/deployment.json"
+        legacy.parent.mkdir()
+        legacy.write_bytes(self.config.read_bytes())
+        self.assertEqual(AccessClient().config_path, legacy)
 
     def test_json_boundary_is_utf8_and_no_shell(self):
         class Response:
@@ -181,6 +205,84 @@ class AccessClientTests(unittest.TestCase):
         self.assertEqual(set(data), expected)
         for field in expected - {"schemaVersion", "stage", "code", "configSource", "exceptionType"}:
             self.assertIs(type(data[field]), bool)
+
+    def test_concurrent_selection_cannot_reset_inflight_existence_checks(self):
+        entered, release, second_started, second_done = (threading.Event() for _ in range(4))
+        failures, deployments = [], []
+        original = Path.is_file
+        def pause_config_check(path):
+            if path == self.config and threading.current_thread().name == "deployment-check":
+                entered.set()
+                if not release.wait(3):
+                    raise RuntimeError("SYNTHETIC_TIMEOUT")
+            return original(path)
+        def first():
+            try:
+                deployments.append(self.reader._deployment())
+            except Exception as exc:
+                failures.append(exc)
+        def second():
+            second_started.set()
+            try:
+                self.reader._select_config()
+            except Exception as exc:
+                failures.append(exc)
+            finally:
+                second_done.set()
+        a = threading.Thread(target=first, name="deployment-check")
+        b = threading.Thread(target=second, name="concurrent-selection")
+        with patch.object(Path, "is_file", pause_config_check):
+            try:
+                a.start()
+                self.assertTrue(entered.wait(2))
+                b.start()
+                self.assertTrue(second_started.wait(2))
+                self.assertFalse(second_done.wait(0.2), "selection reset an in-flight diagnostic state")
+            finally:
+                release.set()
+                a.join(3)
+                if b.ident:
+                    b.join(3)
+        self.assertFalse(failures)
+        self.assertEqual(len(deployments), 1)
+        self.assertTrue(second_done.is_set())
+
+    def test_slow_access_subprocess_does_not_hold_configuration_lock(self):
+        child_started, release, checked = (threading.Event() for _ in range(3))
+        failures = []
+        class Response:
+            returncode = 0
+            stdout = '{"ok":true,"data":{"policy":null}}'
+        def slow_child(*args, **kwargs):
+            child_started.set()
+            if not release.wait(3):
+                raise RuntimeError("SYNTHETIC_TIMEOUT")
+            return Response()
+        def call():
+            try:
+                self.reader.call("policy.get")
+            except Exception as exc:
+                failures.append(exc)
+        def inspect():
+            try:
+                self.reader._deployment()
+                checked.set()
+            except Exception as exc:
+                failures.append(exc)
+        a = threading.Thread(target=call)
+        b = threading.Thread(target=inspect)
+        with patch("wq_panel.access.subprocess.run", side_effect=slow_child):
+            try:
+                a.start()
+                self.assertTrue(child_started.wait(2))
+                b.start()
+                self.assertTrue(checked.wait(2), "long-running child blocked configuration checks")
+            finally:
+                release.set()
+                a.join(3)
+                if b.ident:
+                    b.join(3)
+        self.assertFalse(failures)
 
 
 if __name__ == "__main__":

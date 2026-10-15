@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 import subprocess
 import shutil
+import threading
 
 
 class AccessError(RuntimeError):
@@ -16,14 +17,21 @@ class AccessError(RuntimeError):
 
 class AccessClient:
     def __init__(self, config_path: Path | None = None):
+        self._connection_lock = threading.RLock()
         self._explicit_config = Path(config_path) if config_path is not None else None
         self.config_path = self._select_config()
 
     def _select_config(self) -> Path:
+        with self._connection_lock:
+            return self._select_config_locked()
+
+    def _select_config_locked(self) -> Path:
         local = Path(os.environ.get("LOCALAPPDATA", Path.home()))
         self._diagnostic_root = local / "WeChatQQAIPanel"
         pointer = self._diagnostic_root / "access-config.json"
-        default = local / "MessagingAccess/deployment.json"
+        regular = Path.home() / ".local/share/wechat-qq-access/deployment.json"
+        legacy = local / "MessagingAccess/deployment.json"
+        default = regular if regular.exists() or not legacy.exists() else legacy
         environment = os.environ.get("MESSAGING_ACCESS_CONFIG")
         self._connection_state = {
             "configSource": "explicit" if self._explicit_config is not None else "environment" if environment else "default",
@@ -85,6 +93,10 @@ class AccessClient:
         raise AccessError(code) from None
 
     def _deployment(self) -> dict:
+        with self._connection_lock:
+            return self._deployment_locked()
+
+    def _deployment_locked(self) -> dict:
         # Re-resolve automatic configuration after installer changes. Explicit
         # constructor input remains pinned; invalid selected input never falls back.
         self.config_path = self._select_config()
@@ -119,10 +131,12 @@ class AccessClient:
         return config
 
     def call(self, action: str, **kwargs) -> dict:
-        config = self._deployment()
+        with self._connection_lock:
+            config = self._deployment()
+            config_path = self.config_path
         script = Path(config["projectRoot"]) / "scripts/access.py"
         env = os.environ.copy()
-        env["MESSAGING_ACCESS_CONFIG"] = str(self.config_path)
+        env["MESSAGING_ACCESS_CONFIG"] = str(config_path)
         env["PYTHONUTF8"] = "1"
         env["PYTHONIOENCODING"] = "utf-8"
         try:
@@ -146,7 +160,9 @@ class AccessClient:
     def cache(self, clean: bool = False, category: str = "WeChatCache") -> dict:
         if category not in {"WeChatCache", "WeChatMedia", "Snapshots", "Logs"}:
             raise AccessError("INVALID_CATEGORY")
-        config = self._deployment()
+        with self._connection_lock:
+            config = self._deployment()
+            config_path = self.config_path
         pwsh = shutil.which("pwsh")
         if not pwsh:
             candidate = Path(os.environ.get("ProgramFiles", "C:/Program Files")) / "PowerShell/7/pwsh.exe"
@@ -156,7 +172,7 @@ class AccessClient:
             raise AccessError("POWERSHELL_7_REQUIRED")
         command = [pwsh, "-NoProfile", "-NonInteractive", "-ExecutionPolicy", "Bypass",
                    "-File", str(Path(config["projectRoot"]) / "scripts/cache.ps1"),
-                   "-ConfigPath", str(self.config_path), "-Action", "Clean" if clean else "Status",
+                   "-ConfigPath", str(config_path), "-Action", "Clean" if clean else "Status",
                    "-Category", category, "-Json"]
         try:
             result = subprocess.run(command, capture_output=True, timeout=180, encoding="utf-8", errors="replace",
