@@ -26,6 +26,8 @@ class Reader:
         if action == "policy.get":
             return {"policy": self.policy}
         if action == "policy.set":
+            if "expected_revision" in kwargs and kwargs["expected_revision"] != self.policy.get("revision"):
+                raise PanelError("POLICY_CHANGED")
             self.policy = {"accounts": kwargs["accounts"], "revision": "changed"}
             self.allowed = {c["ref"] for c in self.catalog if any(
                 a["platform"] == c["platform"] and a["account"] == c["account"] and
@@ -165,6 +167,20 @@ class ControllerTests(unittest.TestCase):
             {"platform": "wechat", "account": "account2", "mode": "allow", "conversations": ["c2"]}], ["r1", "r2"])
         self.assertEqual(self.store.settings["watched"], ["r2"])
         self.assertFalse(self.store.results)
+
+    def test_policy_editor_keeps_agent_changes_when_its_revision_is_stale(self):
+        self.reader.policy["revision"] = "agent-newer"
+        accounts = [{"platform": "qq", "account": "account1", "mode": "allow", "conversations": ["c1"]}]
+        original = deepcopy(self.store.settings)
+        response = Bridge(self.controller).save_policy(accounts, ["r1"], "old-editor")
+        self.assertFalse(response["ok"])
+        self.assertEqual(response["error"]["code"], "POLICY_CHANGED")
+        self.assertEqual(self.reader.policy["revision"], "agent-newer")
+        self.assertEqual(self.store.settings, original)
+        self.controller.save_policy(accounts, ["r1"], "agent-newer")
+        request = next(arguments for action, arguments in reversed(self.reader.calls) if action == "policy.set")
+        self.assertEqual(request["expected_revision"], "agent-newer")
+        self.assertEqual(self.store.settings["watched"], ["r1"])
 
     def test_settings_never_store_secret_extra_fields(self):
         settings = deepcopy(self.store.settings)

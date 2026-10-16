@@ -37,8 +37,8 @@ wechat-qq-ai/
 # Fresh deployment: keep both repositories together.
 mkdir wechat-qq-ai
 cd wechat-qq-ai
-git clone --branch v0.2.3 https://github.com/Patr1ck2005/wechat-qq-access.git access
-git clone --branch v0.2.2 https://github.com/Patr1ck2005/wechat-qq-ai-panel.git panel
+git clone --branch v0.3.0 https://github.com/Patr1ck2005/wechat-qq-access.git access
+git clone --branch v0.2.3 https://github.com/Patr1ck2005/wechat-qq-ai-panel.git panel
 cd panel
 # Reuses an existing access deployment when available.
 ./scripts/install.ps1
@@ -65,6 +65,10 @@ The selected access configuration is preserved. Fully quit and reopen the panel 
 2. Select allow-list or exclusion-list permissions for each account. Allow-list permits only selected conversations; exclusion-list permits every conversation except selected exclusions, including new conversations. Missing or invalid policy fails closed.
 3. Choose watched conversations from the authorized list. Watching never grants permission.
 4. Select a model backend and preset. **Fetch** reads without AI; **Summarize** refreshes and analyzes. **Stop** cancels work without advancing successful analysis cursors.
+
+You can also ask a local AI client using the shared `messaging-access` skill to read a named conversation. It can discover and grant that exact conversation through the access CLI, including first use; opening this panel is optional. Existing modes and unrelated permissions remain intact. Ambiguous names are resolved in the conversation, and a request limited to already-authorized chats never expands access.
+
+也可以直接对 Agent 说“读取微信某某群”：Agent 会查找目标、按请求精准授权并读取，无需先手动打开面板配置。同名群在对话中确认；原有模式及其他会话权限保留。面板保存使用版本检查，避免覆盖 Agent 刚完成的权限修改。
 
 DSH requires an installed desktop/CLI distribution and a configured provider. The panel imports only non-secret provider metadata and environment-variable credential references into its dedicated no-tools profile; ordinary DSH settings are preserved. If its guard cannot load, DSH is unavailable rather than falling back to a normal agent profile. Real model compatibility must be verified with the operator's selected provider.
 

@@ -88,8 +88,8 @@ class Bridge:
     def conversations(self):
         return self._call(self.controller.conversations)
 
-    def save_policy(self, accounts, watched):
-        return self._call(self.controller.save_policy, accounts, watched)
+    def save_policy(self, accounts, watched, expected_revision=...):
+        return self._call(self.controller.save_policy, accounts, watched, expected_revision)
 
     def save_settings(self, settings):
         return self._call(self.controller.save_settings, settings)

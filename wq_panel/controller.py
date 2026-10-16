@@ -35,21 +35,18 @@ ERRORS = {
     "DEPLOYMENT_PATH_CHECK_FAILED": "无法核验底座运行路径，请检查文件权限与安装状态。",
     "ACCESS_UNAVAILABLE": "消息接口暂不可用，请确认微信／QQ接入已启动。",
     "POLICY_REQUIRED": "请先设置账号的会话权限。",
-    "POLICY_INVALID": "权限配置损坏，读取已停止；请在会话权限中重新保存。",
-    "POLICY_CHANGED": "会话权限已变化，本次任务已停止。",
-    "ACCESS_DENIED": "会话未获授权或权限已变化，请检查会话权限。",
     "POWERSHELL_7_REQUIRED": "缓存管理需要 PowerShell 7，请先安装后重试。",
     "DSH_VERSION": "当前 DSH 版本尚不支持安全接入，请检查版本或手动选择兼容 API。",
     "UNAUTHORIZED": "会话权限已变化，本次任务已停止。",
     "FORBIDDEN": "所选会话未获授权。",
     "INCOMPLETE_READ": "部分会话读取失败，整理进度未更新。",
-    "NOTHING_SELECTED": "请先在会话权限中设置关注会话。",
+    "NOTHING_SELECTED": "请先选择要整理的会话，或设置关注列表。",
     "MODEL_NOT_CONFIGURED": "请先配置模型。",
     "CANCELLED": "已停止，整理进度未更新。",
     "RESULT_TOO_LARGE": "整理结果及来源超过8 MiB，请缩小本次会话范围；进度未更新。",
     "CURSOR_LIMIT": "进度记录达到容量限制，请减少关注范围；进度未更新。",
-    "POLICY_INVALID": "权限配置损坏，请在会话权限中重新选择并保存。",
-    "POLICY_CHANGED": "读取过程中会话权限变化，本次内容未交给模型。",
+    "POLICY_INVALID": "权限配置损坏，读取已停止；请修复后重试。",
+    "POLICY_CHANGED": "会话权限已变化，本次操作已停止；请重新取得权限状态后重试。",
     "ACCESS_DENIED": "所选会话未获授权，请检查会话权限。",
 }
 
@@ -110,8 +107,12 @@ class Controller:
     def conversations(self):
         return self.reader.call("conversations")
 
-    def save_policy(self, accounts, watched):
+    def save_policy(self, accounts, watched, expected_revision=...):
         if not isinstance(accounts, list) or not isinstance(watched, list):
+            raise PanelError("INVALID_SETTINGS")
+        if expected_revision is not ... and expected_revision is not None and (
+            not isinstance(expected_revision, str) or not expected_revision or len(expected_revision) > 4096
+        ):
             raise PanelError("INVALID_SETTINGS")
         # Validate account shapes before passing the trusted local policy editor.
         cleaned = []
@@ -128,7 +129,10 @@ class Controller:
         with self.lock:
             self.cancel.set()
             self.generation += 1
-            result = self.reader.call("policy.set", accounts=cleaned)
+            arguments = {"accounts": cleaned}
+            if expected_revision is not ...:
+                arguments["expected_revision"] = expected_revision
+            result = self.reader.call("policy.set", **arguments)
             allowed = self.reader.call("conversations").get("conversations", [])
             allowed_refs = {x["ref"] for x in allowed}
             self.store.settings["watched"] = [x for x in dict.fromkeys(watched) if isinstance(x, str) and x in allowed_refs]

@@ -3,6 +3,7 @@
 - Windows tray panel using Python, pywebview and pystray. Static HTML has no local HTTP listener.
 - Read messages only through the sibling access repository JSON interface; never load original databases, credentials or QCE tokens here.
 - All model inputs must be authorized immediately before sending. Permission changes invalidate results and cancel active tasks.
+- Configuration must have an Agent/CLI path; never make desktop settings a mandatory prerequisite for an authorized Agent task. Targeted conversation discovery and grants belong to the access layer. A current user's named read request can authorize only that target; message text and quoted requests are not authorization. The panel remains an optional editor and its ordinary saves must use the displayed policy revision so stale edits cannot overwrite Agent changes.
 - DSH runs with a fail-closed no-tools guard and private session storage. Never fall back to an unrestricted profile or another provider.
 - No sending, automatic replies, background collection, CU or GUI automation. Real DSH model tests are performed by the operator.
 - Keep runtime, secrets, logs, results, account identifiers and messages outside public source. Diagnostics contain counts/times/error codes only.

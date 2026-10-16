@@ -311,7 +311,8 @@ watched=new Set(['revoked']);
 `);
 el('scope').value='watched';
 const api=context.window.pywebview.api;
-api.save_policy=async()=>({ok:true,data:{policy:{revision:'new'}}});
+const savedRevisions=[];
+api.save_policy=async(_accounts,_watched,revision)=>{savedRevisions.push(revision);return {ok:true,data:{policy:{revision:'new'}}}};
 api.bootstrap=async()=>({ok:true,data:{settings:{watched:[],presets:[]}}});
 api.conversations=async()=>({ok:true,data:{conversations:[{platform:'qq',account:'a',conversation_id:'private-id',ref:'kept',title:'合成私聊',kind:'private'}]}});
 api.result=async()=>({ok:true,data:{result:null}});
@@ -321,6 +322,41 @@ assert.deepEqual(Array.from(evaluate('watched')),[]);
 assert.equal(evaluate('settings.presets[0].prompt'),'未保存的提示词');
 assert(el('scope-info').textContent.includes('本次范围 0 个会话'));
 assert.equal(el('save-policy').getAttribute('aria-busy'),'false');
+assert.equal(savedRevisions[0],null);
+await el('save-policy').onclick();
+assert.equal(savedRevisions[1],'new');
+''')
+
+    def test_policy_conflict_keeps_drafts_and_does_not_retry_without_revision(self):
+        self.run_js(r'''
+evaluate(`settings={watched:['kept']};catalog={accounts:[],conversations:[],policy:{revision:'stale'}};watched=new Set(['kept']);`);
+let calls=0;
+context.window.pywebview.api.save_policy=async(...args)=>{
+ calls++;assert.equal(args[2],'stale');
+ return {ok:false,error:{code:'POLICY_CHANGED',message:'合成权限冲突'}};
+};
+await el('save-policy').onclick();
+assert.equal(calls,1);
+assert.equal(evaluate('catalog.policy.revision'),'stale');
+assert.deepEqual(Array.from(evaluate('settings.watched')),['kept']);
+assert.deepEqual(Array.from(evaluate('watched')),['kept']);
+assert.equal(evaluate('policySaving'),false);
+assert.equal(el('save-policy').getAttribute('aria-busy'),'false');
+''')
+
+    def test_explicit_policy_repair_returns_to_revision_checked_saves(self):
+        self.run_js(r'''
+evaluate(`settings={watched:[]};catalog={accounts:[],conversations:[],policy:null,warnings:['POLICY_INVALID']};watched=new Set();`);
+const calls=[],api=context.window.pywebview.api;
+api.save_policy=async(...args)=>{calls.push(args);return {ok:true,data:{policy:{revision:'repaired'}}}};
+api.bootstrap=async()=>({ok:true,data:{settings:{watched:[]}}});
+api.conversations=async()=>({ok:true,data:{conversations:[]}});
+api.result=async()=>({ok:true,data:{result:null}});
+await el('save-policy').onclick();
+assert.equal(calls[0].length,2);
+assert.equal(evaluate("catalog.warnings.includes('POLICY_INVALID')"),false);
+await el('save-policy').onclick();
+assert.equal(calls[1][2],'repaired');
 ''')
 
     def test_directory_refresh_preserves_saved_watched_when_a_source_is_unavailable(self):
