@@ -10,7 +10,7 @@ Local deployment state, downloaded programs and evidence are never selected.
 param([switch]$CheckOnly)
 $ErrorActionPreference = 'Stop'
 $root = [IO.Path]::GetFullPath((Split-Path $PSScriptRoot -Parent))
-$required = @('README.md', 'AGENTS.md', '.gitignore', 'LICENSE', 'THIRD_PARTY.md',
+$required = @('README.md', 'README.zh-CN.md', 'AGENTS.md', '.gitignore', 'LICENSE', 'THIRD_PARTY.md',
     'INTEGRATION.md', 'WEB_ENTRY.md', 'requirements.lock', 'start-panel.cmd')
 $selected = [Collections.Generic.List[object]]::new()
 $assetBytes = [long]0
